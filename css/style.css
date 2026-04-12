@@ -1,0 +1,1216 @@
+/* ================================================== */
+/* RESET GENERAL */
+/* limpia márgenes y paddings por defecto del navegador */
+/* ================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* scroll suave entre secciones */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ================================================== */
+/* ESTILOS GENERALES DE LA PÁGINA */
+/* color base, tipografía y comportamiento general */
+/* ================================================== */
+body {
+    background-color: #0f0f0f;
+    color: #f2f2f2;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ancla superior para volver arriba */
+#inicio {
+    position: absolute;
+    top: 0;
+}
+
+/* esto evita que el header tape las secciones al navegar */
+#inicio,
+#estudio,
+#proyectos,
+#clientes,
+#contacto {
+    scroll-margin-top: 100px;
+}
+
+/* ================================================== */
+/* HEADER */
+/* barra superior fija con logo y menú */
+/* ================================================== */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* logo */
+.logo img {
+    height: 70px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
+
+.logo img:hover {
+    opacity: 0.8;
+}
+
+/* menú de navegación */
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    position: relative;
+    color: #dcdcdc;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.nav a:hover {
+    color: #ffffff;
+}
+
+/* línea fina animada debajo del link */
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 1px;
+    background: #ffffff;
+
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* ================================================== */
+/* HERO */
+/* primera sección grande de portada */
+/* ================================================== */
+.hero {
+    min-height: 90vh;
+    padding: 80px 40px;
+    gap: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.04), transparent 40%);
+}
+
+/* bloque de texto izquierdo */
+.hero-content {
+    max-width: 520px;
+}
+
+.hero-kicker {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #9f9f9f;
+    margin-bottom: 12px;
+}
+
+.hero-content h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.hero-text {
+    font-size: 16px;
+    color: #bdbdbd;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* botón principal */
+.hero-btn {
+    display: inline-block;
+    padding: 12px 26px;
+    background-color: #ffffff;
+    color: #0f0f0f;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* imagen derecha */
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* halo suave detrás de la imagen */
+.hero-visual::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.06);
+    filter: blur(80px);
+    border-radius: 50%;
+}
+
+.hero-visual img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+}
+
+/* ================================================== */
+/* SECCIÓN ESTUDIO */
+/* descripción del estudio + equipo */
+/* ================================================== */
+#estudio {
+    background-color: #1a1a1a;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+#estudio h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+#estudio h3 {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    color: #cfcfcf;
+}
+
+/* grid de integrantes */
+.equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+    align-items: start;
+}
+
+/* card de cada integrante */
+.miembro {
+    background-color: #262626;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    align-self: start;
+}
+
+.foto-box {
+    position: relative;
+}
+
+.miembro img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+/* botón + / - */
+.toggle-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* texto oculto que se despliega */
+.info {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    padding: 0 16px;
+    text-align: left;
+    background-color: #1a1a1a;
+
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.miembro.activo .info {
+    max-height: 300px;
+    opacity: 1;
+    padding: 16px;
+}
+
+.info h4 {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.info p {
+    font-size: 14px;
+    color: #bdbdbd;
+    line-height: 1.5;
+}
+
+/* ================================================== */
+/* SECCIÓN PROYECTOS */
+/* carrusel de trabajos */
+/* ================================================== */
+#proyectos {
+    padding: 90px 40px;
+    background: linear-gradient(180deg, #0b0b0b 0%, #131313 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* brillos decorativos suaves */
+#proyectos::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+}
+
+#proyectos::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+}
+
+/* encabezado de proyectos */
+.proyectos-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.proyectos-tag {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #9f9f9f;
+    margin-bottom: 14px;
+}
+
+.proyectos-header h2 {
+    font-size: 42px;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+.proyectos-header p {
+    font-size: 18px;
+    color: #bdbdbd;
+}
+
+/* estructura general del carrusel */
+.proyectos-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+}
+
+/* botones laterales */
+.proyectos-btn {
+    width: 52px;
+    height: 52px;
+    border: 1px solid #2b2b2b;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.proyectos-btn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: scale(1.05);
+}
+
+/* ventana visible */
+.proyectos-carrusel {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* pista que se mueve */
+.proyectos-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.55s ease;
+    will-change: transform;
+}
+
+/* card de proyecto */
+.proyecto-card {
+    min-width: 360px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.proyecto-card:hover {
+    transform: translateY(-4px);
+    border-color: #3a3a3a;
+}
+
+/* imagen del proyecto */
+.proyecto-img {
+    height: 350px;
+    background-color: #111;
+    overflow: hidden;
+}
+
+.proyecto-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* información del proyecto */
+.proyecto-info {
+    padding: 18px 18px 20px;
+    text-align: left;
+}
+
+.proyecto-info h4 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.proyecto-info span {
+    font-size: 14px;
+    color: #9f9f9f;
+}
+
+/* card final a instagram */
+.proyecto-instagram {
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    text-align: center;
+    color: #ffffff;
+
+    padding: 20px;
+    background: linear-gradient(180deg, #171717 0%, #101010 100%);
+    border: 1px dashed #3a3a3a;
+}
+
+.proyecto-instagram:hover {
+    transform: translateY(-4px);
+    border-color: #5a5a5a;
+}
+
+.insta-mas {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background-color: #232323;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 44px;
+    margin-bottom: 18px;
+}
+
+.proyecto-instagram p {
+    font-size: 15px;
+    color: #d1d1d1;
+    max-width: 180px;
+    line-height: 1.5;
+}
+/* ================================================== */
+
+/* boton volver arriba */
+/* ================================================== */
+.volver-arriba {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    font-size: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/* Flecha */
+.volver-arriba::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    transform: rotate(45deg);
+    margin-top: 4px;
+}
+
+/* Cuando aparece */
+.volver-arriba.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.volver-arriba:hover {
+    transform: translateY(-4px);
+    background: rgba(0, 0, 0, 0.8);
+}
+/* ================================================== */
+/* SECCIÓN CLIENTES */
+/* logos sobre fondo claro texturado */
+/* ================================================== */
+#clientes {
+    position: relative;
+    padding: 120px 40px 90px;
+    text-align: center;
+    overflow: hidden;
+    background: url("../imagenes/fclientes.jpg") center/cover no-repeat;
+      clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* capa blanca para suavizar la textura */
+#clientes::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.62);
+    z-index: 1;
+}
+
+
+
+/* contenido por encima del fondo y la línea */
+#clientes > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* encabezado */
+.clientes-header {
+    max-width: 760px;
+    margin: 0 auto 50px;
+}
+
+.clientes-tag {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #6f6f6f;
+    margin-bottom: 14px;
+}
+
+.clientes-header h2 {
+    font-size: 42px;
+    color: #111111;
+    margin-bottom: 14px;
+}
+
+.clientes-header p {
+    font-size: 18px;
+    color: #4f4f4f;
+    line-height: 1.6;
+}
+
+/* grilla de logos */
+.clientes-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* tarjeta de cada logo */
+.cliente-logo {
+    min-height: 150px;
+    padding: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(245, 245, 245, 0.98) 55%,
+        rgba(232, 232, 232, 1) 100%
+    );
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.cliente-logo:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 0, 0, 0.14);
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* imagen del logo */
+.cliente-logo img {
+    max-width: 170px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    opacity: 0.96;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cliente-logo:hover img {
+    transform: scale(1.04);
+    opacity: 1;
+}
+
+
+
+/* ================================================== */
+/* SECCIÓN CONTACTO */
+/* cierre premium con bloque editorial + panel técnico */
+/* ================================================== */
+#contacto {
+    position: relative;
+    padding: 110px 40px 90px;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 28%),
+        linear-gradient(180deg, #0d0d0d 0%, #151515 100%);
+    overflow: hidden;
+}
+
+/* detalle suave de fondo */
+#contacto::before {
+    content: "";
+    position: absolute;
+    right: -120px;
+    bottom: -120px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+}
+
+.contacto-container {
+    max-width: 1200px;
+    margin: 0 auto 35px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 50px;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========================= */
+/* COLUMNA IZQUIERDA */
+/* texto de presentación */
+/* ========================= */
+.contacto-intro {
+    max-width: 520px;
+}
+
+.contacto-tag {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #8f8f8f;
+}
+
+.contacto-intro h2 {
+    font-size: 48px;
+    line-height: 1.08;
+    color: #ffffff;
+    margin-bottom: 22px;
+}
+
+.contacto-texto {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #d0d0d0;
+    margin-bottom: 18px;
+}
+
+.contacto-texto-secundario {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #9f9f9f;
+}
+
+/* ========================= */
+/* COLUMNA DERECHA */
+/* panel con cards */
+/* ========================= */
+.contacto-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* card principal */
+.contacto-destacado {
+    background: linear-gradient(145deg, #1b1b1b 0%, #111111 100%);
+    border: 1px solid #2b2b2b;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+}
+
+.contacto-destacado h3 {
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+/* grilla secundaria */
+.contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+/* cards normales */
+.contacto-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #252525;
+    border-radius: 20px;
+    padding: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.contacto-card:hover {
+    transform: translateY(-4px);
+    border-color: #383838;
+    background: rgba(255,255,255,0.05);
+}
+
+/* etiqueta chica arriba */
+.contacto-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #8f8f8f;
+    margin-bottom: 14px;
+}
+
+/* texto interno */
+.contacto-card p,
+.contacto-texto-plano {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b8b8b8;
+}
+
+.contacto-texto-plano {
+    display: block;
+    margin-top: 8px;
+}
+
+/* links */
+.contacto-link {
+    display: inline-block;
+    margin-top: 14px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 1.4;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.contacto-link:hover {
+    color: #dcdcdc;
+}
+
+/* botón CTA */
+.contacto-boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    background: #ffffff;
+    color: #111111;
+    font-size: 14px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.contacto-boton:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+}
+
+/* ajuste visual de card CTA */
+.contacto-card-cta {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+/* botón volver arriba dentro de contacto */
+#contacto .volver-arriba {
+    position: relative;
+    z-index: 2;
+    color: #9d9d9d;
+}
+
+#contacto .volver-arriba:hover {
+    color: #ffffff;
+}
+
+#contacto .volver-arriba::after {
+    background: #ffffff;
+}
+
+/* ================================================== */
+/* RESPONSIVE CONTACTO */
+/* ================================================== */
+/* SECCIÓN CONTACTO */
+/* estilo editorial, limpio y sobrio */
+/* ================================================== */
+#contacto {
+    position: relative;
+    padding: 120px 40px 90px;
+    background: #111111;
+    overflow: hidden;
+}
+
+/* detalle sutil de fondo */
+#contacto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.04), transparent 25%);
+    pointer-events: none;
+}
+
+/* bloque superior */
+.contacto-top {
+    max-width: 1200px;
+    margin: 0 auto 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.contacto-tag {
+    display: inline-block;
+    margin-bottom: 18px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #8c8c8c;
+}
+
+.contacto-top h2 {
+    max-width: 760px;
+    font-size: 64px;
+    line-height: 1.02;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* línea divisoria */
+.contacto-linea {
+    max-width: 1200px;
+    height: 1px;
+    margin: 0 auto 45px;
+    background: rgba(255,255,255,0.12);
+    position: relative;
+    z-index: 2;
+}
+
+/* dos columnas */
+.contacto-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    position: relative;
+    z-index: 2;
+}
+
+.contacto-col-izq {
+    padding-right: 30px;
+}
+
+.contacto-texto {
+    font-size: 22px;
+    line-height: 1.65;
+    color: #c7c7c7;
+    max-width: 520px;
+}
+
+.contacto-col-der {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* cada dato */
+.contacto-item {
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.contacto-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #7f7f7f;
+}
+
+.contacto-item a,
+.contacto-item p {
+    font-size: 24px;
+    line-height: 1.35;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contacto-item a {
+    transition: opacity 0.3s ease;
+}
+
+.contacto-item a:hover {
+    opacity: 0.75;
+}
+
+/* botón */
+.contacto-cta-wrap {
+    max-width: 1200px;
+    margin: 45px auto 0;
+    position: relative;
+    z-index: 2;
+}
+
+.contacto-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 26px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.contacto-cta:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.32);
+    transform: translateY(-2px);
+}
+
+/* volver arriba dentro de contacto */
+#contacto .volver-arriba {
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+}
+
+/* ================================================== */
+/* RESPONSIVE CONTACTO */
+/* ================================================== */
+@media (max-width: 900px) {
+    #contacto {
+        padding: 90px 20px 70px;
+    }
+
+    .contacto-top h2 {
+        font-size: 44px;
+        max-width: 100%;
+    }
+
+    .contacto-contenido {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contacto-col-izq {
+        padding-right: 0;
+    }
+
+    .contacto-texto {
+        font-size: 18px;
+        max-width: 100%;
+    }
+
+    .contacto-item a,
+    .contacto-item p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contacto-top h2 {
+        font-size: 34px;
+    }
+
+    .contacto-texto {
+        font-size: 16px;
+    }
+
+    .contacto-item a,
+    .contacto-item p {
+        font-size: 17px;
+        word-break: break-word;
+    }
+}
+
+/* ================================================== */
+/* FOOTER */
+/* parte final de la web */
+/* ================================================== */
+footer {
+    background-color: #111111;
+    color: #f2f2f2;
+    padding: 50px 40px 20px;
+    border-top: 1px solid #2a2a2a;
+}
+
+.footer-contenido {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-col h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+.footer-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #c7c7c7;
+    margin-bottom: 8px;
+}
+
+.footer-col a {
+    display: block;
+    color: #c7c7c7;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.footer-col a:hover {
+    color: #ffffff;
+}
+
+.footer-marca p {
+    max-width: 320px;
+}
+
+/* íconos de redes */
+.footer-redes {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.red-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color: #1f1f1f;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+.red-icono:hover {
+    background-color: #2f2f2f;
+}
+
+.red-icono img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* línea inferior final */
+.footer-copy {
+    border-top: 1px solid #2a2a2a;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.footer-copy p {
+    font-size: 13px;
+    color: #8d8d8d;
+}
+
+.footer-logo {
+    width: 140px;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+
+/* ================================================== */
+/* RESPONSIVE */
+/* ajustes para tablet y celular */
+/* ================================================== */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 100px 20px 60px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-visual img {
+        max-width: 100%;
+    }
+
+    .clientes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .clientes-header h2 {
+        font-size: 34px;
+    }
+
+    .clientes-header p {
+        font-size: 16px;
+    }
+
+    #clientes {
+        padding: 120px 20px 70px;
+    }
+}
+
+@media (max-width: 600px) {
+    .clientes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cliente-logo {
+        min-height: 125px;
+        padding: 22px;
+    }
+
+    .cliente-logo img {
+        max-width: 145px;
+        max-height: 65px;
+    }
+}
