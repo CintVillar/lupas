@@ -422,94 +422,64 @@
             });
         });
     </script>
+<script>
+    const trackProyectos = document.querySelector(".proyectos-track");
+    const btnNext = document.querySelector(".proyectos-next");
+    const btnPrev = document.querySelector(".proyectos-prev");
+    const cardsProyectos = document.querySelectorAll(".proyecto-card");
+ 
 
-        <!-- ================================================== -->
-    <!-- SCRIPT 2 -->
-    <!-- mueve el carrusel de proyectos -->
-    <!-- ================================================== -->
-    <script>
-        const trackProyectos = document.querySelector(".proyectos-track");
-        const btnNext = document.querySelector(".proyectos-next");
-        const btnPrev = document.querySelector(".proyectos-prev");
-        const carruselProyectos = document.querySelector(".proyectos-carrusel");
-        const cardsProyectos = document.querySelectorAll(".proyecto-card");
+    let indexProyectos = 0;
 
-        let indexProyectos = 0;
+    function obtenerCardsVisibles() {
+        const width = window.innerWidth;
 
-        function obtenerPaso() {
-            if (!cardsProyectos.length) return 0;
+        if (width <= 700) return 1;
+        if (width <= 1024) return 2;
+        return 3;
+    }
 
-            const card = cardsProyectos[0];
-            const cardWidth = card.getBoundingClientRect().width;
-            const trackStyles = window.getComputedStyle(trackProyectos);
-            const gap = parseFloat(trackStyles.gap) || 0;
+    function obtenerPaso() {
+        const primeraCard = cardsProyectos[0];
+        const gap = parseInt(window.getComputedStyle(trackProyectos).gap) || 0;
+        return primeraCard.offsetWidth + gap;
+    }
 
-            return cardWidth + gap;
+    function obtenerMaxIndex() {
+        return Math.max(0, cardsProyectos.length - obtenerCardsVisibles());
+    }
+
+    function actualizarCarrusel() {
+        const paso = obtenerPaso();
+        const maxIndex = obtenerMaxIndex();
+
+        if (indexProyectos > maxIndex) {
+            indexProyectos = maxIndex;
         }
 
-        function obtenerCardsVisibles() {
-            if (!cardsProyectos.length) return 1;
+        trackProyectos.style.transform = `translateX(-${indexProyectos * paso}px)`;
 
-            const paso = obtenerPaso();
-            const anchoCarrusel = carruselProyectos.getBoundingClientRect().width;
+        btnPrev.disabled = indexProyectos === 0;
+        btnNext.disabled = indexProyectos === maxIndex;
+    }
 
-            return Math.max(1, Math.floor(anchoCarrusel / paso));
+    btnNext.addEventListener("click", () => {
+        const maxIndex = obtenerMaxIndex();
+        if (indexProyectos < maxIndex) {
+            indexProyectos++;
+            actualizarCarrusel();
         }
+    });
 
-        function obtenerMaxIndex() {
-            const visibles = obtenerCardsVisibles();
-            return Math.max(0, cardsProyectos.length - visibles);
+    btnPrev.addEventListener("click", () => {
+        if (indexProyectos > 0) {
+            indexProyectos--;
+            actualizarCarrusel();
         }
+    });
 
-        function actualizarCarrusel() {
-            const paso = obtenerPaso();
-            const maxIndex = obtenerMaxIndex();
-
-            if (indexProyectos > maxIndex) {
-                indexProyectos = maxIndex;
-            }
-
-            trackProyectos.style.transform = `translateX(-${indexProyectos * paso}px)`;
-
-            btnPrev.style.opacity = indexProyectos === 0 ? "0.5" : "1";
-            btnPrev.style.pointerEvents = indexProyectos === 0 ? "none" : "auto";
-
-            btnNext.style.opacity = indexProyectos === maxIndex ? "0.5" : "1";
-            btnNext.style.pointerEvents = indexProyectos === maxIndex ? "none" : "auto";
-        }
-
-        btnNext.addEventListener("click", () => {
-            const maxIndex = obtenerMaxIndex();
-
-            if (indexProyectos < maxIndex) {
-                indexProyectos++;
-                actualizarCarrusel();
-            }
-        });
-
-        btnPrev.addEventListener("click", () => {
-            if (indexProyectos > 0) {
-                indexProyectos--;
-                actualizarCarrusel();
-            }
-        });
-
-        window.addEventListener("load", actualizarCarrusel);
-        window.addEventListener("resize", actualizarCarrusel);
-    </script>
-
-    <a href="#inicio" class="volver-arriba" aria-label="Volver arriba"></a>
-
-    <script>
-        const btn = document.querySelector(".volver-arriba");
-
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) {
-                btn.classList.add("visible");
-            } else {
-                btn.classList.remove("visible");
-            }
-        });
-    </script>
+    window.addEventListener("resize", actualizarCarrusel);
+    window.addEventListener("load", actualizarCarrusel);
+</script>
 </body>
 </html>
