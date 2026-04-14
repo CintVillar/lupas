@@ -15,23 +15,25 @@
 
     <!-- ================================================== -->
     <!-- ANCLA DE INICIO -->
-    <!-- sirve para que el logo y "volver arriba" lleven al tope -->
+    <!-- sirve para que el logo y los links "Inicio" / "volver arriba"
+         lleven al tope de la página -->
     <!-- ================================================== -->
     <div id="inicio"></div>
 
+
     <!-- ================================================== -->
     <!-- HEADER -->
-    <!-- logo + menú de navegación -->
+    <!-- logo + menú principal de navegación -->
     <!-- ================================================== -->
     <header class="header">
         <div class="header-container">
 
-            <!-- logo clickeable -->
+            <!-- Logo clickeable -->
             <a href="#inicio" class="logo">
                 <img src="./imagenes/logo.png" alt="Lupas Ingeniería">
             </a>
 
-            <!-- menú -->
+            <!-- Navegación principal -->
             <nav class="nav">
                 <a href="#inicio">Inicio</a>
                 <a href="#estudio">Estudio</a>
@@ -43,127 +45,186 @@
         </div>
     </header>
 
+
     <!-- ================================================== -->
     <!-- CONTENIDO PRINCIPAL -->
-    <!-- adentro van todas las secciones principales -->
+    <!-- acá viven todas las secciones importantes de la web -->
     <!-- ================================================== -->
     <main>
 
         <!-- ================================================== -->
         <!-- HERO / PORTADA -->
-        <!-- primera sección visual de entrada -->
+        <!-- bloque visual inicial con texto en movimiento + imagen -->
         <!-- ================================================== -->
         <section class="hero">
-            <div class="hero-bg-track" aria-hidden="true">
-    <div class="hero-bg-text">
-        <span>*LU.PAS INGENIERÍA </span>
-        <span>*  LU.PAS INGENIERÍA</span>
-    </div>
-</div>
 
+            <!-- Texto decorativo en movimiento del fondo -->
+            <div class="hero-bg-track" aria-hidden="true">
+                <div class="hero-bg-text">
+                    <span>*LU.PAS INGENIERÍA </span>
+                    <span>* LU.PAS INGENIERÍA</span>
+                </div>
+            </div>
+
+            <!-- Imagen principal del hero -->
             <div class="hero-visual">
                 <img src="./imagenes/Proyecto INICIO.png" alt="Estructura arquitectónica">
             </div>
+
         </section>
+
 
         <!-- ================================================== -->
         <!-- SECCIÓN ESTUDIO -->
-        <!-- presentación del estudio y del equipo -->
+        <!-- presentación general del estudio -->
         <!-- ================================================== -->
         <section id="estudio">
+
+            <!-- Título principal de la sección -->
             <h2>Estudio</h2>
+
+            <!-- Bajada o texto de presentación -->
             <h3>
                 LU.PAS Ingeniería es un estudio orientado al desarrollo de soluciones técnicas eficientes,
                 combinando experiencia, criterio profesional y una mirada práctica sobre cada proyecto.
             </h3>
 
-            <div class="equipo-grid">
 
-                <!-- integrante 1 -->
-                <div class="miembro">
-                    <div class="foto-box">
-                        <img src="./imagenes/persona1.jpg" alt="Foto de Lucas">
-                        <button class="toggle-btn">+</button>
-                    </div>
-                    <div class="info">
-                        <h4>Lucas Pastawski - INGENIERO CIVIL</h4>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, voluptates.
-                            Rem eveniet architecto quam provident laudantium dicta enim tempore perspiciatis
-                            facere, incidunt sapiente consectetur dolores, voluptatem voluptate, neque velit aliquid.
-                        </p>
-                    </div>
+            <!-- ================================================== -->
+            <!-- SUBSECCIÓN EQUIPO -->
+            <!-- carrusel de integrantes con hover sobre cada card -->
+            <!-- ================================================== -->
+            <section id="equipo" class="equipo-section">
+
+                <!-- Encabezado de la subsección -->
+                <div class="equipo-header">
+                    <p class="equipo-kicker">Nuestro equipo</p>
+                    <h2>Personas que sostienen cada proyecto con criterio técnico y precisión.</h2>
                 </div>
 
-                <!-- integrante 2 -->
-                <div class="miembro">
-                    <div class="foto-box">
-                        <img src="./imagenes/persona4.jpg" alt="Foto de Juliana">
-                        <button class="toggle-btn">+</button>
+                <!-- Estructura general del carrusel -->
+                <div class="equipo-slider">
+
+                    <!-- Flecha izquierda -->
+                    <button class="equipo-arrow equipo-prev" aria-label="Anterior">
+                        &#10094;
+                    </button>
+
+                    <!-- Ventana visible del carrusel -->
+                    <div class="equipo-viewport">
+                        <div class="equipo-track">
+
+                            <!-- ===================== -->
+                            <!-- Integrante 1 -->
+                            <!-- ===================== -->
+                            <article class="equipo-card">
+                                <div class="equipo-visual">
+                                    <img src="./imagenes/persona1.jpg" alt="Foto de Lucas Pastawski">
+                                </div>
+
+                                <div class="equipo-info">
+                                    <h3>Lucas Pastawski</h3>
+                                    <span>Ingeniero civil</span>
+                                    <p>
+                                        Dirección técnica, desarrollo de proyectos y seguimiento integral de obra,
+                                        con foco en criterios estructurales, documentación y resolución eficiente.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <!-- ===================== -->
+                            <!-- Integrante 2 -->
+                            <!-- ===================== -->
+                            <article class="equipo-card">
+                                <div class="equipo-visual">
+                                    <img src="./imagenes/persona4.jpg" alt="Foto de Juliana Troncoso">
+                                </div>
+
+                                <div class="equipo-info">
+                                    <h3>Juliana Troncoso</h3>
+                                    <span>Ingeniera civil</span>
+                                    <p>
+                                        Planificación, coordinación técnica y acompañamiento en distintas etapas
+                                        de proyecto, priorizando precisión, orden y soluciones viables.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <!-- ===================== -->
+                            <!-- Integrante 3 -->
+                            <!-- ===================== -->
+                            <article class="equipo-card">
+                                <div class="equipo-visual">
+                                    <img src="./imagenes/persona3.jpg" alt="Foto de Ezequiel Costa">
+                                </div>
+
+                                <div class="equipo-info">
+                                    <h3>Ezequiel Costa</h3>
+                                    <span>Estudiante avanzado de ingeniería civil</span>
+                                    <p>
+                                        Apoyo en cálculo estructural, documentación técnica y desarrollo de propuestas
+                                        para viviendas y obras de escala intermedia.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <!-- ===================== -->
+                            <!-- Integrante 4 -->
+                            <!-- OJO: revisar si es Ariel o Axel -->
+                            <!-- ===================== -->
+                            <article class="equipo-card">
+                                <div class="equipo-visual">
+                                    <img src="./imagenes/persona2.jpg" alt="Foto de Ariel Keller">
+                                </div>
+
+                                <div class="equipo-info">
+                                    <h3>Ariel Keller</h3>
+                                    <span>Estudiante avanzado de ingeniería civil</span>
+                                    <p>
+                                        Participación en tareas de documentación, modelado y soporte técnico
+                                        para proyectos estructurales, con especial atención al detalle.
+                                    </p>
+                                </div>
+                            </article>
+
+                        </div>
                     </div>
-                    <div class="info">
-                        <h4>Juliana Troncoso - INGENIERA CIVIL</h4>
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque cum sapiente commodi quasi
-                            nobis iusto, exercitationem consectetur quis impedit suscipit porro accusamus,
-                            distinctio pariatur facilis ipsum vel a at beatae.
-                        </p>
-                    </div>
+
+                    <!-- Flecha derecha -->
+                    <button class="equipo-arrow equipo-next" aria-label="Siguiente">
+                        &#10095;
+                    </button>
+
                 </div>
-
-                <!-- integrante 3 -->
-                <div class="miembro">
-                    <div class="foto-box">
-                        <img src="./imagenes/persona3.jpg" alt="Foto de Ezequiel">
-                        <button class="toggle-btn">+</button>
-                    </div>
-                    <div class="info">
-                        <h4>Ezequiel Costa</h4>
-                        <p>
-                            Estudiante de ingeniería civil en la Universidad Nacional del Comahue.
-                            Cálculo de estructuras de viviendas y elaboración de documentación.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- integrante 4 -->
-                <div class="miembro">
-                    <div class="foto-box">
-                        <img src="./imagenes/persona2.jpg" alt="Foto de Axel">
-                        <button class="toggle-btn">+</button>
-                    </div>
-                    <div class="info">
-                        <h4>Axel Keller</h4>
-                        <p>
-                            Estudiante de ingeniería civil en la Universidad Nacional del Comahue.
-                            Cálculo de estructuras de viviendas y elaboración de documentación.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
+            </section>
 
         </section>
 
+
         <!-- ================================================== -->
         <!-- SECCIÓN PROYECTOS -->
-        <!-- carrusel de trabajos -->
+        <!-- carrusel de trabajos del estudio -->
         <!-- ================================================== -->
         <section id="proyectos">
+
+            <!-- Encabezado de la sección -->
             <div class="proyectos-header">
                 <span class="proyectos-tag">PROYECTOS</span>
                 <h2>Algunos trabajos del estudio</h2>
                 <p>Selección de proyectos desarrollados por LU.PAS Ingeniería.</p>
             </div>
 
+            <!-- Carrusel completo -->
             <div class="proyectos-wrapper">
+
+                <!-- Flecha izquierda -->
                 <button class="proyectos-btn proyectos-prev">&#10094;</button>
 
+                <!-- Ventana visible -->
                 <div class="proyectos-carrusel">
                     <div class="proyectos-track">
 
-                        <!-- proyecto 1 -->
+                        <!-- Proyecto 1 -->
                         <div class="proyecto-card">
                             <div class="proyecto-img">
                                 <img src="./imagenes/quincho vergara.png" alt="Proyecto Zilvestein Martinez">
@@ -174,7 +235,7 @@
                             </div>
                         </div>
 
-                        <!-- proyecto 2 -->
+                        <!-- Proyecto 2 -->
                         <div class="proyecto-card">
                             <div class="proyecto-img">
                                 <img src="./imagenes/Proyecto (2).png" alt="Proyecto Estudio Estoa">
@@ -185,7 +246,7 @@
                             </div>
                         </div>
 
-                        <!-- proyecto 3 -->
+                        <!-- Proyecto 3 -->
                         <div class="proyecto-card">
                             <div class="proyecto-img">
                                 <img src="./imagenes/proyecto3.jpg" alt="Proyecto Motum Studio">
@@ -196,7 +257,7 @@
                             </div>
                         </div>
 
-                        <!-- proyecto 4 -->
+                        <!-- Proyecto 4 -->
                         <div class="proyecto-card">
                             <div class="proyecto-img">
                                 <img src="./imagenes/proyecto4.jpg" alt="Proyecto GDS Studio">
@@ -207,7 +268,7 @@
                             </div>
                         </div>
 
-                        <!-- proyecto 5 -->
+                        <!-- Proyecto 5 -->
                         <div class="proyecto-card">
                             <div class="proyecto-img">
                                 <img src="./imagenes/proyecto5.jpg" alt="Proyecto 5">
@@ -218,7 +279,7 @@
                             </div>
                         </div>
 
-                        <!-- proyecto 6 -->
+                        <!-- Proyecto 6 -->
                         <div class="proyecto-card">
                             <div class="proyecto-img">
                                 <img src="./imagenes/proyecto6.jpg" alt="Proyecto 6">
@@ -229,9 +290,8 @@
                             </div>
                         </div>
 
-                        <!-- card final que lleva a instagram -->
-                        <a href="https://www.instagram.com/lupas.ingenieria/" target="_blank"
-                            class="proyecto-card proyecto-instagram">
+                        <!-- Card final: link a Instagram -->
+                        <a href="https://www.instagram.com/lupas.ingenieria/" target="_blank" class="proyecto-card proyecto-instagram">
                             <div class="insta-mas">+</div>
                             <p>Ver más proyectos en Instagram</p>
                         </a>
@@ -239,23 +299,28 @@
                     </div>
                 </div>
 
+                <!-- Flecha derecha -->
                 <button class="proyectos-btn proyectos-next">&#10095;</button>
-            </div>
 
+            </div>
 
         </section>
 
+
         <!-- ================================================== -->
         <!-- SECCIÓN CLIENTES -->
-        <!-- logos de estudios / empresas con las que trabajan -->
+        <!-- logos de estudios / empresas que trabajan con Lupas -->
         <!-- ================================================== -->
         <section id="clientes">
+
+            <!-- Encabezado de la sección -->
             <div class="clientes-header">
                 <span class="clientes-tag">CLIENTES</span>
                 <h2>Confían en LU.PAS Ingeniería</h2>
                 <p>Estudios, empresas y desarrolladores con los que trabajamos en distintos proyectos.</p>
             </div>
 
+            <!-- Grilla de logos -->
             <div class="clientes-grid">
 
                 <div class="cliente-logo">
@@ -271,8 +336,7 @@
                 </div>
 
                 <div class="cliente-logo">
-                    <img src="./imagenes/logos_clientes_lupas/processed_logo dos arquitectura.png"
-                        alt="Logo cliente Dos Arquitectura">
+                    <img src="./imagenes/logos_clientes_lupas/processed_logo dos arquitectura.png" alt="Logo cliente Dos Arquitectura">
                 </div>
 
                 <div class="cliente-logo">
@@ -280,29 +344,33 @@
                 </div>
 
                 <div class="cliente-logo">
-                    <img src="./imagenes/logos_clientes_lupas/processed_logo estudio lc.png"
-                        alt="Logo cliente Estudio LC">
+                    <img src="./imagenes/logos_clientes_lupas/processed_logo estudio lc.png" alt="Logo cliente Estudio LC">
                 </div>
 
             </div>
-
 
         </section>
 
 
         <!-- ================================================== -->
         <!-- SECCIÓN CONTACTO -->
-        <!-- versión más editorial, limpia y profesional -->
+        <!-- bloque final con datos de contacto y llamado a la acción -->
         <!-- ================================================== -->
         <section id="contacto">
+
+            <!-- Encabezado -->
             <div class="contacto-top">
                 <span class="contacto-tag">CONTACTO</span>
                 <h2>Hablemos de tu próximo proyecto.</h2>
             </div>
 
+            <!-- Línea divisoria -->
             <div class="contacto-linea"></div>
 
+            <!-- Contenido en dos columnas -->
             <div class="contacto-contenido">
+
+                <!-- Columna izquierda: texto institucional -->
                 <div class="contacto-col contacto-col-izq">
                     <p class="contacto-texto">
                         LU.PAS Ingeniería desarrolla soluciones estructurales con criterio técnico,
@@ -310,7 +378,9 @@
                     </p>
                 </div>
 
+                <!-- Columna derecha: datos de contacto -->
                 <div class="contacto-col contacto-col-der">
+
                     <div class="contacto-item">
                         <span class="contacto-label">Email</span>
                         <a href="mailto:lupasingenieria@gmail.com">lupasingenieria@gmail.com</a>
@@ -330,30 +400,30 @@
                         <span class="contacto-label">Instagram</span>
                         <a href="https://www.instagram.com/lupas.ingenieria/" target="_blank">@lupas.ingenieria</a>
                     </div>
+
                 </div>
             </div>
 
+            <!-- Botón de acción -->
             <div class="contacto-cta-wrap">
                 <a href="https://wa.me/5492995071689" target="_blank" class="contacto-cta">
                     Iniciar consulta
                 </a>
             </div>
 
-
         </section>
-
-
 
     </main>
 
+
     <!-- ================================================== -->
     <!-- FOOTER -->
-    <!-- info final, navegación y redes -->
+    <!-- cierre de página con marca, navegación, contacto y redes -->
     <!-- ================================================== -->
     <footer>
         <div class="footer-contenido">
 
-            <!-- columna marca -->
+            <!-- Columna marca -->
             <div class="footer-col footer-marca">
                 <h3>LU.PAS Ingeniería</h3>
                 <p>
@@ -362,7 +432,7 @@
                 </p>
             </div>
 
-            <!-- columna navegación -->
+            <!-- Columna navegación -->
             <div class="footer-col">
                 <h4>Navegación</h4>
                 <a href="#inicio">Inicio</a>
@@ -372,7 +442,7 @@
                 <a href="#contacto">Contacto</a>
             </div>
 
-            <!-- columna contacto -->
+            <!-- Columna contacto -->
             <div class="footer-col">
                 <h4>Contacto</h4>
                 <p>Email: lupasingenieria@gmail.com</p>
@@ -380,7 +450,7 @@
                 <p>WhatsApp: +54 9 299 5071689</p>
             </div>
 
-            <!-- columna redes -->
+            <!-- Columna redes -->
             <div class="footer-col">
                 <h4>Redes</h4>
 
@@ -389,8 +459,7 @@
                         <img src="./imagenes/—Pngtree—whatsapp social media icon design_3654811.png" alt="WhatsApp">
                     </a>
 
-                    <a href="https://www.instagram.com/lupas.ingenieria/" target="_blank" class="red-icono"
-                        aria-label="Instagram">
+                    <a href="https://www.instagram.com/lupas.ingenieria/" target="_blank" class="red-icono" aria-label="Instagram">
                         <img src="./imagenes/pngwing.com.png" alt="Instagram">
                     </a>
                 </div>
@@ -398,38 +467,84 @@
 
         </div>
 
+        <!-- Copy final -->
         <div class="footer-copy">
             <img src="./imagenes/logo.png" alt="LU.PAS Ingeniería" class="footer-logo">
             <p>© 2026 LU.PAS Ingeniería - Todos los derechos reservados</p>
         </div>
     </footer>
 
+
     <!-- ================================================== -->
-    <!-- SCRIPT 1 -->
-    <!-- abre y cierra la info del equipo -->
+    <!-- SCRIPT: CARRUSEL DEL EQUIPO -->
+    <!-- mueve las cards del equipo según el ancho de pantalla -->
     <!-- ================================================== -->
     <script>
-        const botones = document.querySelectorAll(".toggle-btn");
+        const trackEquipo = document.querySelector(".equipo-track");
+        const btnNextEquipo = document.querySelector(".equipo-next");
+        const btnPrevEquipo = document.querySelector(".equipo-prev");
+        const cardsEquipo = document.querySelectorAll(".equipo-card");
 
-        botones.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const card = boton.closest(".miembro");
-                card.classList.toggle("activo");
+        let indexEquipo = 0;
 
-                if (card.classList.contains("activo")) {
-                    boton.textContent = "-";
-                } else {
-                    boton.textContent = "+";
+        function getVisibleCards() {
+            if (window.innerWidth <= 760) return 1;
+            if (window.innerWidth <= 1100) return 2;
+            return 3;
+        }
+
+        function updateEquipoSlider() {
+            const visibleCards = getVisibleCards();
+            const maxIndex = Math.max(0, cardsEquipo.length - visibleCards);
+            const cardWidth = cardsEquipo[0].offsetWidth;
+            const gap = 22;
+
+            if (indexEquipo > maxIndex) {
+                indexEquipo = maxIndex;
+            }
+
+            const moveX = indexEquipo * (cardWidth + gap);
+            trackEquipo.style.transform = `translateX(-${moveX}px)`;
+
+            if (btnPrevEquipo) btnPrevEquipo.disabled = indexEquipo === 0;
+            if (btnNextEquipo) btnNextEquipo.disabled = indexEquipo === maxIndex;
+        }
+
+        if (btnNextEquipo) {
+            btnNextEquipo.addEventListener("click", () => {
+                const visibleCards = getVisibleCards();
+                const maxIndex = Math.max(0, cardsEquipo.length - visibleCards);
+
+                if (indexEquipo < maxIndex) {
+                    indexEquipo++;
+                    updateEquipoSlider();
                 }
             });
-        });
+        }
+
+        if (btnPrevEquipo) {
+            btnPrevEquipo.addEventListener("click", () => {
+                if (indexEquipo > 0) {
+                    indexEquipo--;
+                    updateEquipoSlider();
+                }
+            });
+        }
+
+        window.addEventListener("load", updateEquipoSlider);
+        window.addEventListener("resize", updateEquipoSlider);
     </script>
+
+
+    <!-- ================================================== -->
+    <!-- SCRIPT: CARRUSEL DE PROYECTOS -->
+    <!-- mueve las cards de proyectos según cantidad visible -->
+    <!-- ================================================== -->
     <script>
         const trackProyectos = document.querySelector(".proyectos-track");
         const btnNext = document.querySelector(".proyectos-next");
         const btnPrev = document.querySelector(".proyectos-prev");
         const cardsProyectos = document.querySelectorAll(".proyecto-card");
-
 
         let indexProyectos = 0;
 
@@ -483,6 +598,7 @@
         window.addEventListener("resize", actualizarCarrusel);
         window.addEventListener("load", actualizarCarrusel);
     </script>
+
 </body>
 
 </html>
