@@ -118,7 +118,7 @@ a { color: inherit; }
 .logo { flex-shrink: 0; }
 
 .logo img {
-    height: 48px;   /* era hasta 68px: reducido a estándar profesional */
+    height: 54px;
     width: auto;
     object-fit: contain;
     transition: opacity 0.25s ease;
@@ -999,41 +999,41 @@ footer {
    Breakpoints: 1100 → 900 → 760 → 600 → 430
    Cada breakpoint solo corrige lo que cambia — sin repetir.
    ================================================================== */
- 
- 
+
+
 /* ------------------------------------------------------------------
    1100px — Notebooks chicas / tablets grandes en horizontal
    Equipo: 4→2 columnas. Proyectos: 3→2 cards visibles.
    ------------------------------------------------------------------ */
 @media (max-width: 1100px) {
- 
+
     /* Equipo: de 4 columnas a 2 */
     .equipo-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 18px;
     }
- 
+
     /* Proyectos: cards de 2 en 2 */
     .proyecto-card {
         flex-basis: calc((100% - 22px) / 2);
     }
 }
- 
- 
+
+
 /* ------------------------------------------------------------------
    900px — Tablets en vertical / notebooks muy chicas
    Header colapsa en dos líneas. Hero: imagen centrada.
    Layouts de 2 columnas pasan a 1.
    ------------------------------------------------------------------ */
 @media (max-width: 900px) {
- 
+
     /* Header: logo encima, nav abajo */
     :root { --header-h: 108px; }
- 
+
     .header {
         height: auto;           /* ya no tiene altura fija */
     }
- 
+
     .header-container {
         flex-direction: column;
         align-items: center;
@@ -1041,80 +1041,92 @@ footer {
         padding-bottom: 14px;
         gap: 10px;
     }
- 
-    .logo img { height: 40px; }
- 
+
+
+
     .nav {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
         gap: 8px 18px;
     }
- 
+
     .nav a { font-size: 13px; }
- 
+
     /* Hero: la imagen pasa a estar centrada (no pegada a la derecha) */
     .hero {
-        min-height: 520px;
+        min-height: auto;
+        padding: 48px var(--page-x) 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
     }
- 
+
+    /* En tablet el hero-visual deja de ser absolute y entra al flujo */
     .hero-visual {
+        position: relative;
         right: auto;
-        left: 50%;
-        top: 60%;
-        transform: translate(-50%, -50%);
-        width: min(92vw, 780px);
+        left: auto;
+        top: auto;
+        transform: none;
+        width: min(90vw, 700px);
+        margin-top: 32px;
     }
- 
+
+    /* El texto de fondo queda fijo arriba */
+    .hero-bg-text { top: 28px; }
+
     /* Equipo: ya está en 2 col desde 1100px, se mantiene */
- 
+
     /* Clientes: 3→2 columnas */
     .clientes-grid {
         grid-template-columns: repeat(2, 1fr);
     }
- 
+
     /* Contacto: 2 columnas → 1 columna */
     .contacto-contenido {
         grid-template-columns: 1fr;
         gap: 36px;
     }
- 
+
     .contacto-col-izq { padding-right: 0; }
- 
+
     /* Footer: 4 col → 2 col */
     .footer-contenido {
         grid-template-columns: 1fr 1fr;
         gap: 32px 24px;
     }
 }
- 
- 
+
+
 /* ------------------------------------------------------------------
    760px — Celulares grandes (iPhone Pro Max, Samsung Galaxy)
    Todo pasa a 1 columna. Equipo sin hover (info siempre visible).
    Proyectos: carrusel de 1 card. Botones abajo del carrusel.
    ------------------------------------------------------------------ */
 @media (max-width: 760px) {
- 
+
     /* Equipo: 2→1 columna */
     .equipo-grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
- 
+
     /* Card de equipo: altura más compacta en celular */
     .equipo-card {
         height: auto;           /* ya no fijamos altura: el contenido la define */
         min-height: 420px;
     }
- 
+
     /* En celular no hay hover real: descripción siempre visible */
     .equipo-info p {
         max-height: 200px;
         opacity: 1;
         transform: translateY(0);
     }
- 
+
     /* Proyectos: wrapper pasa a 1 sola columna.
        El carrusel queda arriba, los botones abajo en fila. */
     .proyectos-wrapper {
@@ -1122,132 +1134,134 @@ footer {
         grid-template-rows: auto auto;
         gap: 16px;
     }
- 
+
     /* El carrusel ocupa toda la fila 1 */
     .proyectos-carrusel {
         grid-column: 1;
         grid-row: 1;
     }
- 
+
     /* Los dos botones van en fila 2, uno a cada lado */
     .proyectos-prev {
         grid-column: 1;
         grid-row: 2;
         justify-self: start;
     }
- 
+
     .proyectos-next {
         grid-column: 1;
         grid-row: 2;
         justify-self: end;
         margin-top: 0;         /* elimina el hack de margin negativo */
     }
- 
+
     /* Cards: 1 por vez en celular */
     .proyecto-card {
         flex-basis: 100%;
     }
- 
+
     .proyectos-track { gap: 16px; }
 }
- 
- 
+
+
 /* ------------------------------------------------------------------
    600px — Celulares medianos (iPhone 14, Pixel 7, Galaxy S)
    Ajustes finos: nav más compacto, hero más corto,
    clientes 1 col, footer 1 col, botones flotantes más chicos.
    ------------------------------------------------------------------ */
 @media (max-width: 600px) {
- 
+
     /* Header: más compacto aún */
     :root { --header-h: 100px; }
- 
+
     .header-container {
         padding-top: 12px;
         padding-bottom: 12px;
         gap: 8px;
     }
- 
-    .logo img { height: 36px; }
- 
+
+    /* Logo: en celular vuelve a un tamaño visible, no miniatura */
+    .logo img { height: 46px; }
+
     .nav { gap: 6px 14px; }
     .nav a { font-size: 12px; letter-spacing: 0.03em; }
- 
-    /* Hero: más corto para que no ocupe toda la pantalla en vertical */
+
+    /* Hero: imagen en flujo normal, más chica y centrada */
     .hero {
-        min-height: 440px;
+        min-height: auto;
+        padding: 36px var(--page-x) 0;
     }
- 
+
     .hero-visual {
-        top: 62%;
-        width: 100vw;          /* ocupa todo el ancho */
+        width: min(95vw, 500px);
+        margin-top: 24px;
     }
- 
-    /* Texto hero de fondo: más chico para que no se corte raro */
+
+    /* Texto de fondo del hero: más chico */
     .hero-bg-text span {
-        font-size: clamp(48px, 13vw, 80px);
-        padding-right: 48px;
+        font-size: clamp(44px, 12vw, 72px);
+        padding-right: 44px;
     }
- 
+
     /* Sección estudio */
     #estudio { text-align: left; }
     #estudio > h3 { margin-bottom: 40px; }
- 
+
     /* Equipo: header alineado a la izquierda */
     .equipo-header { margin-bottom: 32px; }
- 
+
     /* Clientes: 2→1 columna */
     .clientes-grid { grid-template-columns: 1fr; }
- 
+
     /* Clientes: sin clip-path en celular (el corte diagonal se ve mal) */
     #clientes { clip-path: none; }
- 
+
     /* Contacto: título más chico */
     .contacto-top h2 { font-size: clamp(28px, 8vw, 40px); }
- 
+
     /* Botón CTA ancho completo */
     .contacto-cta {
         width: 100%;
         max-width: 300px;
         justify-content: center;
     }
- 
+
     /* Footer: todo en 1 columna */
     .footer-contenido { grid-template-columns: 1fr; gap: 28px; }
- 
+
     /* Botones flotantes: más pegados al borde */
     .whatsapp-float { right: 14px; bottom: 70px; width: 52px; height: 52px; }
     .volver-arriba  { right: 14px; bottom: 12px; width: 42px; height: 42px; }
 }
- 
- 
+
+
 /* ------------------------------------------------------------------
    430px — Celulares chicos (iPhone SE, modelos compactos)
    Solo ajustes puntuales donde algo se rompe o queda apretado.
    ------------------------------------------------------------------ */
 @media (max-width: 430px) {
- 
-    .logo img { height: 32px; }
- 
+
+    .logo img { height: 40px; }
+
     .nav { gap: 5px 10px; }
     .nav a { font-size: 11px; }
- 
+
     /* Hero aún más compacto */
-    .hero { min-height: 400px; }
-    .hero-visual { width: 108vw; }   /* levemente más ancha para llenar bien */
- 
+    .hero { padding: 28px var(--page-x) 0; }
+    .hero-visual { width: min(98vw, 420px); margin-top: 20px; }
+
     /* Imagen de proyectos más baja */
     .proyecto-img { height: 200px; }
- 
+
     /* Card del equipo: altura mínima más baja */
     .equipo-card { min-height: 360px; }
- 
+
     /* Texto de equipo más compacto */
     .equipo-info h3 { font-size: 1.1rem; }
     .equipo-info p  { font-size: 0.85rem; line-height: 1.55; }
 }
- 
- 
+
+
 /* ------------------------------------------------------------------
    ACCESIBILIDAD — prefers-reduced-motion
    Si el sistema operativo pide menos movimiento, bajamos todo.
