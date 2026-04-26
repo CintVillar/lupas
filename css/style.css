@@ -118,7 +118,7 @@ a { color: inherit; }
 .logo { flex-shrink: 0; }
 
 .logo img {
-    height: 54px;
+    height: 100px;
     width: auto;
     object-fit: contain;
     transition: opacity 0.25s ease;
@@ -168,9 +168,8 @@ a { color: inherit; }
     min-height: clamp(560px, calc(100vh - var(--header-h)), 860px);
     overflow: hidden;
     background:
-        radial-gradient(circle at 68% 42%, rgba(37,99,235,0.10), transparent 20%),
-        radial-gradient(circle at 78% 55%, rgba(59,130,246,0.06), transparent 30%),
-        linear-gradient(180deg, #070809 0%, #0b0e14 50%, #070809 100%);
+        linear-gradient(rgba(5,6,8,0.62), rgba(5,6,8,0.72)),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80&fit=crop&crop=center') center/cover no-repeat;
 }
 
 .hero-bg-track {
@@ -199,7 +198,7 @@ a { color: inherit; }
     line-height: 0.9;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.32);
 }
 
 @keyframes scrollInfinito {
@@ -230,7 +229,7 @@ a { color: inherit; }
 .hero-visual img {
     position: relative; z-index: 2;
     width: 100%; height: auto;
-    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.70)) brightness(0.92) saturate(0.90);
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.90)) brightness(1.05) contrast(1.05) saturate(0.85);
 }
 
 /* Degradado lateral que suaviza el recorte de la imagen */
@@ -877,21 +876,39 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px; height: 40px;
+    width: 42px; height: 42px;
     background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.10);
     border-radius: 50%;
-    transition: background 0.25s ease, transform 0.25s ease;
+    color: #888888;          /* color neutro en reposo */
+    transition: background 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, transform 0.25s ease;
+    text-decoration: none;
 }
 
 .red-icono:hover {
-    background: rgba(255,255,255,0.11);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
-.red-icono img {
-    width: 20px; height: 20px;
-    object-fit: contain;
+/* WhatsApp: verde al hover */
+.red-wpp:hover {
+    color: #25D366;
+    background: rgba(37, 211, 102, 0.10);
+    border-color: rgba(37, 211, 102, 0.30);
+}
+
+/* Instagram: naranja/rosa al hover */
+.red-ig:hover {
+    color: #E1306C;
+    background: rgba(225, 48, 108, 0.10);
+    border-color: rgba(225, 48, 108, 0.28);
+}
+
+/* Email: azul al hover */
+.red-mail:hover {
+    color: #4A9EFF;
+    background: rgba(74, 158, 255, 0.10);
+    border-color: rgba(74, 158, 255, 0.28);
 }
 
 /* Divider */
