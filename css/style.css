@@ -345,9 +345,9 @@ a {
     padding: var(--section-y) var(--page-x);
     text-align: center;
     background:
-    linear-gradient(rgba(13,13,13,0.65), rgba(13,13,13,0.75)),
-    url('../imagenes/equipo.jpg') center/cover no-repeat;
-background-attachment: fixed;
+        linear-gradient(rgba(13, 13, 13, 0.65), rgba(13, 13, 13, 0.75)),
+        url('../imagenes/equipo.jpg') center/cover no-repeat;
+    background-attachment: fixed;
 }
 
 #estudio>h2 {
@@ -393,7 +393,7 @@ background-attachment: fixed;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.20em;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255, 255, 255, 0.45);
     margin-bottom: 14px;
     font-family: var(--font-body);
 }
@@ -403,7 +403,7 @@ background-attachment: fixed;
     margin: 0 auto;
     font-family: var(--font-head);
     font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-font-weight: 400;
+    font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.01em;
     color: #f0f0f0;
@@ -548,7 +548,7 @@ font-weight: 400;
 .proyectos-header h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
-font-weight: 600;
+    font-weight: 600;
     color: var(--white);
     margin-bottom: 14px;
     line-height: 1.1;
@@ -741,7 +741,7 @@ font-weight: 600;
 .clientes-header h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
-font-weight: 600;
+    font-weight: 600;
     color: #111;
     margin-bottom: 12px;
 }
@@ -1078,7 +1078,7 @@ footer {
     /* encima del botón volver arriba */
     z-index: 998;
     width: 52px;
-height: 52px;
+    height: 52px;
     border-radius: 50%;
     background: #25D366;
     display: flex;
