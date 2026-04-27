@@ -1219,6 +1219,7 @@ footer {
         align-items: center;
         text-align: center;
         overflow: hidden;
+        position: relative;
     }
 
     /* En tablet el hero-visual deja de ser absolute y entra al flujo */
@@ -1279,7 +1280,7 @@ footer {
     .equipo-card {
         height: auto;
         /* ya no fijamos altura: el contenido la define */
-        min-height: 420px;
+        min-height: 320px;
     }
 
     /* En celular no hay hover real: descripción siempre visible */
@@ -1350,7 +1351,8 @@ footer {
 
     /* Logo: en celular vuelve a un tamaño visible, no miniatura */
     .logo img {
-        height: 46px;
+        height: 44px;
+        filter: brightness(0) invert(1);
     }
 
     .nav {
@@ -1378,10 +1380,18 @@ footer {
         font-size: clamp(44px, 12vw, 72px);
         padding-right: 44px;
     }
+    .hero-tagline {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    padding: 20px var(--page-x) 24px;
+    text-align: left;
+}
 
     /* Sección estudio */
     #estudio {
         text-align: left;
+        background-attachment: scroll;
     }
 
     #estudio>h3 {
