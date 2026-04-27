@@ -36,23 +36,33 @@
  
  
     <main>
+
  
         <!-- ================================================== -->
         <!-- HERO -->
         <!-- ================================================== -->
+      <div class="hero-tagline">
+    <p>Ingeniería civil · Proyectos y obra</p>
+    <span>Neuquén, Argentina</span>
+</div>
         <section class="hero">
-            <div class="hero-bg-track" aria-hidden="true">
-                <div class="hero-bg-text">
-                    <span>*LU.PAS INGENIERÍA </span>
-                    <span>* LU.PAS INGENIERÍA </span>
-                    <span>*LU.PAS INGENIERÍA </span>
-                    <span>* LU.PAS INGENIERÍA </span>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <img src="./imagenes/Proyecto INICIO.png" alt="Estructura arquitectónica">
-            </div>
-        </section>
+
+    <!-- CAPA 1: texto scrolleando (z-index 1) -->
+<div class="hero-bg-track" aria-hidden="true">
+    <div class="hero-bg-text">
+        <span>LU.PAS INGENIERÍA &nbsp; * &nbsp; </span>
+        <span>LU.PAS INGENIERÍA &nbsp; * &nbsp; </span>
+        <span>LU.PAS INGENIERÍA &nbsp; * &nbsp; </span>
+        <span>LU.PAS INGENIERÍA &nbsp; * &nbsp; </span>
+    </div>
+</div>
+
+    <!-- CAPA 2: estructura encima (z-index 3) -->
+    <div class="hero-estructura">
+        <img src="./imagenes/estructura fondo 1.png" alt="Estructura LU.PAS">
+    </div>
+
+</section>
  
  
         <!-- ================================================== -->
@@ -69,7 +79,7 @@
             <section id="equipo" class="equipo-section">
                 <div class="equipo-header">
                     <p class="equipo-kicker">Nuestro equipo</p>
-                    <h2>Personas que sostienen cada proyecto con criterio técnico y precisión.</h2>
+                    <h2>El equipo detrás de cada proyecto.</h2>
                 </div>
  
                 <!-- Grid fijo de 4 cards: sin carrusel en desktop -->

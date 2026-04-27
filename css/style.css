@@ -1,7 +1,9 @@
 /* ================================================== */
 /* RESET */
 /* ================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,41 +26,44 @@ img {
 /* ================================================== */
 :root {
     /* Backgrounds — todos dentro de la misma familia fría-oscura */
-    --bg:          #0d0d0d;   /* base más oscura */
-    --bg-soft:     #111111;   /* secciones alternas */
-    --bg-card:     #181818;   /* cards */
-    --bg-card-2:   #1e1e1e;
+    --bg: #0d0d0d;
+    /* base más oscura */
+    --bg-soft: #111111;
+    /* secciones alternas */
+    --bg-card: #181818;
+    /* cards */
+    --bg-card-2: #1e1e1e;
 
     /* Texto */
-    --text:        #efefef;
-    --text-soft:   #c4c4c4;
-    --text-muted:  #888888;
+    --text: #efefef;
+    --text-soft: #c4c4c4;
+    --text-muted: #888888;
 
     /* Líneas / bordes */
-    --line:        rgba(255,255,255,0.07);
-    --line-strong: rgba(255,255,255,0.14);
+    --line: rgba(255, 255, 255, 0.07);
+    --line-strong: rgba(255, 255, 255, 0.14);
 
     /* Acento: un gris-azulado muy sutil, profesional */
-    --accent:      #3a7bd5;
-    --accent-soft: rgba(58,123,213,0.12);
+    --accent: #3a7bd5;
+    --accent-soft: rgba(58, 123, 213, 0.12);
 
     /* Utilidades */
-    --white:       #ffffff;
-    --radius:      16px;
-    --radius-sm:   10px;
-    --container:   1200px;
+    --white: #ffffff;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --container: 1200px;
     --container-wide: 1280px;
 
     /* Espaciado fluido */
-    --page-x:      clamp(16px, 4vw, 48px);
-    --section-y:   clamp(72px, 8vw, 110px);
+    --page-x: clamp(16px, 4vw, 48px);
+    --section-y: clamp(72px, 8vw, 110px);
 
     /* Header offset para scroll-margin */
-    --header-h:    80px;
+    --header-h: 80px;
 
     /* Tipografía */
-    --font-head:   'Outfit', sans-serif;
-    --font-body:   'Inter', sans-serif;
+    --font-head: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
 }
 
 /* ================================================== */
@@ -79,13 +84,24 @@ body {
     top: 0;
 }
 
-#inicio, #estudio, #proyectos, #clientes, #contacto {
+#inicio,
+#estudio,
+#proyectos,
+#clientes,
+#contacto {
     scroll-margin-top: calc(var(--header-h) + 16px);
 }
 
-main, header, footer, section { width: 100%; }
+main,
+header,
+footer,
+section {
+    width: 100%;
+}
 
-a { color: inherit; }
+a {
+    color: inherit;
+}
 
 
 /* ================================================== */
@@ -97,10 +113,11 @@ a { color: inherit; }
     top: 0;
     z-index: 1000;
     height: var(--header-h);
-    background: rgba(13, 13, 13, 0.90);
+    background: linear-gradient(180deg, rgba(5, 6, 8, 0.80) 0%, transparent 100%);
+    border-bottom: none;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
+    border-bottom: none;
 }
 
 .header-container {
@@ -115,7 +132,9 @@ a { color: inherit; }
 }
 
 /* Logo — tamaño equilibrado, no gigante */
-.logo { flex-shrink: 0; }
+.logo {
+    flex-shrink: 0;
+}
 
 .logo img {
     height: 100px;
@@ -124,7 +143,9 @@ a { color: inherit; }
     transition: opacity 0.25s ease;
 }
 
-.logo img:hover { opacity: 0.75; }
+.logo img:hover {
+    opacity: 0.75;
+}
 
 /* Nav */
 .nav {
@@ -146,30 +167,39 @@ a { color: inherit; }
     white-space: nowrap;
 }
 
-.nav a:hover { color: var(--white); }
+.nav a:hover {
+    color: var(--white);
+}
 
 .nav a::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -4px;
-    width: 0; height: 1px;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
     background: var(--white);
     transition: width 0.3s ease;
 }
 
-.nav a:hover::after { width: 100%; }
+.nav a:hover::after {
+    width: 100%;
+}
 
 
 /* ================================================== */
 /* HERO */
 /* ================================================== */
 .hero {
+    margin-top: calc(var(--header-h) * -1);
+    padding-top: var(--header-h);
     position: relative;
-    min-height: clamp(560px, calc(100vh - var(--header-h)), 860px);
+    min-height: 100vh;
     overflow: hidden;
     background:
-        linear-gradient(rgba(5,6,8,0.62), rgba(5,6,8,0.72)),
-        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80&fit=crop&crop=center') center/cover no-repeat;
+
+        linear-gradient(180deg, rgba(5, 6, 8, 0.25) 0%, rgba(5, 6, 8, 0.15) 40%, rgba(5, 6, 8, 0.45) 100%),
+        url('../imagenes/fondo_1.png') center/cover no-repeat;
 }
 
 .hero-bg-track {
@@ -182,7 +212,7 @@ a { color: inherit; }
 
 .hero-bg-text {
     position: absolute;
-    top: 41%;
+    top: 36%;
     left: 0;
     display: flex;
     width: max-content;
@@ -191,19 +221,26 @@ a { color: inherit; }
 
 .hero-bg-text span {
     white-space: nowrap;
-    padding-right: clamp(60px, 8vw, 110px);
+    padding-left: 0px;
+    padding-right: 0px;
     font-family: var(--font-head);
-    font-size: clamp(64px, 10vw, 200px);
+    font-size: clamp(52px, 7.5vw, 148px);
     font-weight: 700;
     line-height: 0.9;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.32);
+    color: rgba(255, 255, 255, 0.70);
 }
 
+
 @keyframes scrollInfinito {
-    from { transform: translate(0, -41%); }
-    to   { transform: translate(-50%, -41%); }
+    from {
+        transform: translate(0, -41%);
+    }
+
+    to {
+        transform: translate(-50%, -41%);
+    }
 }
 
 .hero-visual {
@@ -220,47 +257,100 @@ a { color: inherit; }
     content: "";
     position: absolute;
     inset: 16% 12%;
-    background: rgba(58,123,213,0.07);
+    background: rgba(58, 123, 213, 0.07);
     filter: blur(120px);
     border-radius: 50%;
     z-index: 1;
 }
 
 .hero-visual img {
-    position: relative; z-index: 2;
-    width: 100%; height: auto;
-    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.90)) brightness(1.05) contrast(1.05) saturate(0.85);
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.90)) brightness(1.05) contrast(1.05) saturate(0.85);
 }
 
 /* Degradado lateral que suaviza el recorte de la imagen */
 .hero::after {
     content: "";
     position: absolute;
-    inset: 0; z-index: 2;
+    inset: 0;
+    z-index: 2;
     pointer-events: none;
-    background: linear-gradient(
-        90deg,
-        #070809 0%,
-        rgba(7,8,9,0.88) 7%,
-        transparent 18%,
-        transparent 82%,
-        rgba(7,8,9,0.88) 93%,
-        #070809 100%
-    );
+    background: linear-gradient(90deg,
+            #070809 0%,
+            rgba(7, 8, 9, 0.88) 7%,
+            transparent 18%,
+            transparent 82%,
+            rgba(7, 8, 9, 0.88) 93%,
+            #070809 100%);
 }
 
+/* Estructura encima del texto — mix-blend-mode elimina el negro */
+.hero-estructura {
+    position: absolute;
+    right: -20px;
+    bottom: 40;
+    width: min(65vw, 900px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hero-estructura img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: screen;
+    /* magia: elimina el negro, deja la estructura */
+    filter: brightness(1.1) contrast(1.05);
+}
+
+.hero-tagline {
+    position: absolute;
+    bottom: 28px;
+    left: clamp(20px, 4vw, 56px);
+    z-index: 4;
+    pointer-events: none;
+    padding-bottom: 0;
+}
+
+.hero-tagline p {
+    font-family: var(--font-head);
+    font-size: clamp(22px, 2.8vw, 38px);
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hero-tagline span {
+    font-family: var(--font-body);
+    font-size: clamp(12px, 1.2vw, 15px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
 
 /* ================================================== */
 /* SECCIÓN ESTUDIO */
 /* bg consistente con el resto de la página */
 /* ================================================== */
 #estudio {
-    background: var(--bg-soft);   /* #111111 — sin corte abrupto */
+    background: var(--bg-soft);
+    /* #111111 — sin corte abrupto */
     padding: var(--section-y) var(--page-x);
     text-align: center;
+    background:
+    linear-gradient(rgba(13,13,13,0.65), rgba(13,13,13,0.75)),
+    url('../imagenes/equipo.jpg') center/cover no-repeat;
+background-attachment: fixed;
 }
 
-#estudio > h2 {
+#estudio>h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 600;
@@ -268,7 +358,7 @@ a { color: inherit; }
     margin-bottom: 16px;
 }
 
-#estudio > h3 {
+#estudio>h3 {
     font-family: var(--font-body);
     font-size: clamp(15px, 1.6vw, 18px);
     font-weight: 300;
@@ -295,7 +385,8 @@ a { color: inherit; }
 .equipo-header {
     max-width: var(--container);
     margin: 0 auto 48px;
-    padding: 0 var(--page-x);
+    padding: 60px var(--page-x) 0;
+    text-align: center;
 }
 
 .equipo-kicker {
@@ -309,11 +400,12 @@ a { color: inherit; }
 
 .equipo-header h2 {
     max-width: 680px;
+    margin: 0 auto;
     font-family: var(--font-head);
-    font-size: clamp(1.7rem, 3.2vw, 2.8rem);
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
     color: #f0f0f0;
 }
 
@@ -345,7 +437,8 @@ a { color: inherit; }
 }
 
 .equipo-visual img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -357,12 +450,10 @@ a { color: inherit; }
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.85) 0%,
-        rgba(0,0,0,0.30) 45%,
-        rgba(0,0,0,0.0) 100%
-    );
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.30) 45%,
+            rgba(0, 0, 0, 0.0) 100%);
     transition: opacity 0.4s ease;
     z-index: 2;
 }
@@ -370,7 +461,9 @@ a { color: inherit; }
 /* Info siempre visible abajo, dentro del overlay */
 .equipo-info {
     position: absolute;
-    left: 0; right: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 3;
     padding: 22px 22px 24px;
 }
@@ -387,7 +480,7 @@ a { color: inherit; }
 .equipo-info span {
     display: block;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255, 255, 255, 0.55);
     margin-bottom: 10px;
     font-weight: 400;
     letter-spacing: 0.03em;
@@ -397,7 +490,7 @@ a { color: inherit; }
 .equipo-info p {
     font-size: 0.875rem;
     line-height: 1.6;
-    color: rgba(255,255,255,0.82);
+    color: rgba(255, 255, 255, 0.82);
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -418,13 +511,12 @@ a { color: inherit; }
 
 /* Intensificamos el overlay oscuro en hover */
 .equipo-card:hover .equipo-visual::after {
-    opacity: 1.4; /* no se puede pasar de 1, pero hace que sea más oscuro si el valor de opacidad base lo permite */
-    background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.94) 0%,
-        rgba(0,0,0,0.50) 50%,
-        rgba(0,0,0,0.05) 100%
-    );
+    opacity: 1.4;
+    /* no se puede pasar de 1, pero hace que sea más oscuro si el valor de opacidad base lo permite */
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.50) 50%,
+            rgba(0, 0, 0, 0.05) 100%);
 }
 
 
@@ -455,8 +547,8 @@ a { color: inherit; }
 
 .proyectos-header h2 {
     font-family: var(--font-head);
-    font-size: clamp(28px, 4vw, 46px);
-    font-weight: 600;
+    font-size: clamp(28px, 4vw, 42px);
+font-weight: 600;
     color: var(--white);
     margin-bottom: 14px;
     line-height: 1.1;
@@ -472,16 +564,17 @@ a { color: inherit; }
     max-width: var(--container-wide);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 54px minmax(0,1fr) 54px;
+    grid-template-columns: 54px minmax(0, 1fr) 54px;
     align-items: center;
     gap: 16px;
 }
 
 .proyectos-btn {
-    width: 50px; height: 50px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 1px solid var(--line-strong);
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     color: var(--white);
     font-size: 20px;
     cursor: pointer;
@@ -492,19 +585,26 @@ a { color: inherit; }
 }
 
 .proyectos-btn:hover {
-    background: rgba(255,255,255,0.09);
-    border-color: rgba(255,255,255,0.22);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.22);
     transform: scale(1.05);
 }
 
-.proyectos-btn:disabled { opacity: 0.28; cursor: default; transform: none; }
+.proyectos-btn:disabled {
+    opacity: 0.28;
+    cursor: default;
+    transform: none;
+}
 
-.proyectos-carrusel { overflow: hidden; width: 100%; }
+.proyectos-carrusel {
+    overflow: hidden;
+    width: 100%;
+}
 
 .proyectos-track {
     display: flex;
     gap: 22px;
-    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
@@ -512,7 +612,7 @@ a { color: inherit; }
     flex: 0 0 calc((100% - 44px) / 3);
     min-width: 0;
     background: var(--bg-card);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: var(--radius);
     overflow: hidden;
     text-decoration: none;
@@ -521,8 +621,8 @@ a { color: inherit; }
 
 .proyecto-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.12);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.28);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
 }
 
 .proyecto-img {
@@ -532,12 +632,15 @@ a { color: inherit; }
 }
 
 .proyecto-img img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-.proyecto-card:hover .proyecto-img img { transform: scale(1.04); }
+.proyecto-card:hover .proyecto-img img {
+    transform: scale(1.04);
+}
 
 .proyecto-info {
     padding: 18px 20px 20px;
@@ -566,17 +669,20 @@ a { color: inherit; }
     text-align: center;
     padding: 30px 22px;
     background: var(--bg-card);
-    border: 1px dashed rgba(255,255,255,0.15);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
     min-height: 240px;
 }
 
-.proyecto-instagram:hover { border-color: rgba(255,255,255,0.30); }
+.proyecto-instagram:hover {
+    border-color: rgba(255, 255, 255, 0.30);
+}
 
 .insta-mas {
-    width: 72px; height: 72px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -586,7 +692,9 @@ a { color: inherit; }
     transition: background 0.25s ease;
 }
 
-.proyecto-instagram:hover .insta-mas { background: rgba(255,255,255,0.11); }
+.proyecto-instagram:hover .insta-mas {
+    background: rgba(255, 255, 255, 0.11);
+}
 
 .proyecto-instagram p {
     font-size: 14px;
@@ -605,7 +713,8 @@ a { color: inherit; }
     position: relative;
     padding: clamp(90px, 10vw, 130px) var(--page-x) clamp(80px, 9vw, 110px);
     text-align: center;
-    background: #f4f4f4;   /* fondo plano claro — sin imagen que genere bordes raros */
+    background: #f4f4f4;
+    /* fondo plano claro — sin imagen que genere bordes raros */
     overflow: hidden;
 }
 
@@ -631,8 +740,8 @@ a { color: inherit; }
 
 .clientes-header h2 {
     font-family: var(--font-head);
-    font-size: clamp(26px, 3.5vw, 40px);
-    font-weight: 600;
+    font-size: clamp(28px, 4vw, 42px);
+font-weight: 600;
     color: #111;
     margin-bottom: 12px;
 }
@@ -658,27 +767,30 @@ a { color: inherit; }
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     background: #ffffff;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cliente-logo:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.09);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
 }
 
 .cliente-logo img {
     max-width: 160px;
     max-height: 72px;
-    width: auto; height: auto;
+    width: auto;
+    height: auto;
     object-fit: contain;
     opacity: 0.90;
     transition: opacity 0.3s ease;
 }
 
-.cliente-logo:hover img { opacity: 1; }
+.cliente-logo:hover img {
+    opacity: 1;
+}
 
 
 /* ================================================== */
@@ -695,7 +807,7 @@ a { color: inherit; }
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 85% 15%, rgba(58,123,213,0.06), transparent 30%);
+    background: radial-gradient(circle at 85% 15%, rgba(58, 123, 213, 0.06), transparent 30%);
     pointer-events: none;
 }
 
@@ -704,11 +816,15 @@ a { color: inherit; }
 .contacto-contenido,
 .contacto-cta-wrap {
     max-width: var(--container);
-    margin-left: auto; margin-right: auto;
-    position: relative; z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
 }
 
-.contacto-top { margin-bottom: 32px; }
+.contacto-top {
+    margin-bottom: 32px;
+}
 
 .contacto-tag {
     display: inline-block;
@@ -720,7 +836,7 @@ a { color: inherit; }
 
 .contacto-top h2 {
     font-family: var(--font-head);
-    font-size: clamp(32px, 5.5vw, 62px);
+    font-size: clamp(32px, 4.5vw, 52px);
     font-weight: 500;
     line-height: 1.06;
     color: var(--white);
@@ -739,7 +855,9 @@ a { color: inherit; }
     gap: clamp(32px, 5vw, 70px);
 }
 
-.contacto-col-izq { padding-right: 20px; }
+.contacto-col-izq {
+    padding-right: 20px;
+}
 
 .contacto-texto {
     font-size: clamp(16px, 1.8vw, 21px);
@@ -777,10 +895,17 @@ a { color: inherit; }
     overflow-wrap: anywhere;
 }
 
-.contacto-item a { transition: color 0.25s ease; }
-.contacto-item a:hover { color: #aac9f5; }
+.contacto-item a {
+    transition: color 0.25s ease;
+}
 
-.contacto-cta-wrap { margin-top: 48px; }
+.contacto-item a:hover {
+    color: #aac9f5;
+}
+
+.contacto-cta-wrap {
+    margin-top: 48px;
+}
 
 .contacto-cta {
     display: inline-flex;
@@ -788,7 +913,7 @@ a { color: inherit; }
     justify-content: center;
     gap: 10px;
     padding: 14px 30px;
-    border: 1px solid rgba(255,255,255,0.20);
+    border: 1px solid rgba(255, 255, 255, 0.20);
     border-radius: 999px;
     text-decoration: none;
     color: var(--white);
@@ -799,8 +924,8 @@ a { color: inherit; }
 }
 
 .contacto-cta:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.35);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
     transform: translateY(-2px);
 }
 
@@ -818,7 +943,7 @@ footer {
 .footer-inner {
     max-width: var(--container);
     margin: 0 auto;
-    padding: 64px var(--page-x) 0;
+    padding: 72px clamp(32px, 6vw, 80px) 0;
 }
 
 .footer-contenido {
@@ -830,7 +955,7 @@ footer {
 
 /* Logo columna marca */
 .footer-logo-img {
-    height: 42px;
+    height: 52px;
     width: auto;
     object-fit: contain;
     margin-bottom: 20px;
@@ -846,7 +971,7 @@ footer {
 
 .footer-col h4 {
     font-family: var(--font-head);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -863,7 +988,9 @@ footer {
     transition: color 0.25s ease;
 }
 
-.footer-col a:hover { color: var(--white); }
+.footer-col a:hover {
+    color: var(--white);
+}
 
 /* Redes */
 .footer-redes {
@@ -876,13 +1003,15 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px; height: 42px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.10);
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.10);
     border-radius: 50%;
-    color: #888888;          /* color neutro en reposo */
+    color: #888888;
+    /* color neutro en reposo */
     transition: background 0.25s ease, border-color 0.25s ease,
-                color 0.25s ease, transform 0.25s ease;
+        color 0.25s ease, transform 0.25s ease;
     text-decoration: none;
 }
 
@@ -914,7 +1043,7 @@ footer {
 /* Divider */
 .footer-divider {
     height: 1px;
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
 }
 
 /* Copy */
@@ -945,25 +1074,29 @@ footer {
 .whatsapp-float {
     position: fixed;
     right: 24px;
-    bottom: 80px;   /* encima del botón volver arriba */
+    bottom: 80px;
+    /* encima del botón volver arriba */
     z-index: 998;
-    width: 56px; height: 56px;
+    width: 52px;
+height: 52px;
     border-radius: 50%;
     background: #25D366;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 24px rgba(37,211,102,0.38);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.38);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     text-decoration: none;
 }
 
 .whatsapp-float:hover {
     transform: translateY(-3px) scale(1.06);
-    box-shadow: 0 10px 30px rgba(37,211,102,0.50);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.50);
 }
 
-.whatsapp-float svg { display: block; }
+.whatsapp-float svg {
+    display: block;
+}
 
 
 /* ================================================== */
@@ -974,10 +1107,11 @@ footer {
     right: 24px;
     bottom: 16px;
     z-index: 999;
-    width: 46px; height: 46px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -991,7 +1125,8 @@ footer {
 
 .volver-arriba::before {
     content: "";
-    width: 9px; height: 9px;
+    width: 9px;
+    height: 9px;
     border-left: 2px solid #fff;
     border-top: 2px solid #fff;
     transform: rotate(45deg);
@@ -1006,7 +1141,7 @@ footer {
 
 .volver-arriba:hover {
     transform: translateY(-3px);
-    background: rgba(255,255,255,0.13);
+    background: rgba(255, 255, 255, 0.13);
 }
 
 
@@ -1045,10 +1180,13 @@ footer {
 @media (max-width: 900px) {
 
     /* Header: logo encima, nav abajo */
-    :root { --header-h: 108px; }
+    :root {
+        --header-h: 108px;
+    }
 
     .header {
-        height: auto;           /* ya no tiene altura fija */
+        height: auto;
+        /* ya no tiene altura fija */
     }
 
     .header-container {
@@ -1068,7 +1206,9 @@ footer {
         gap: 8px 18px;
     }
 
-    .nav a { font-size: 13px; }
+    .nav a {
+        font-size: 13px;
+    }
 
     /* Hero: la imagen pasa a estar centrada (no pegada a la derecha) */
     .hero {
@@ -1093,7 +1233,9 @@ footer {
     }
 
     /* El texto de fondo queda fijo arriba */
-    .hero-bg-text { top: 28px; }
+    .hero-bg-text {
+        top: 28px;
+    }
 
     /* Equipo: ya está en 2 col desde 1100px, se mantiene */
 
@@ -1108,7 +1250,9 @@ footer {
         gap: 36px;
     }
 
-    .contacto-col-izq { padding-right: 0; }
+    .contacto-col-izq {
+        padding-right: 0;
+    }
 
     /* Footer: 4 col → 2 col */
     .footer-contenido {
@@ -1133,7 +1277,8 @@ footer {
 
     /* Card de equipo: altura más compacta en celular */
     .equipo-card {
-        height: auto;           /* ya no fijamos altura: el contenido la define */
+        height: auto;
+        /* ya no fijamos altura: el contenido la define */
         min-height: 420px;
     }
 
@@ -1147,7 +1292,8 @@ footer {
     /* Proyectos: wrapper pasa a 1 sola columna.
        El carrusel queda arriba, los botones abajo en fila. */
     .proyectos-wrapper {
-        grid-template-columns: 1fr;   /* elimina columnas de botones */
+        grid-template-columns: 1fr;
+        /* elimina columnas de botones */
         grid-template-rows: auto auto;
         gap: 16px;
     }
@@ -1169,7 +1315,8 @@ footer {
         grid-column: 1;
         grid-row: 2;
         justify-self: end;
-        margin-top: 0;         /* elimina el hack de margin negativo */
+        margin-top: 0;
+        /* elimina el hack de margin negativo */
     }
 
     /* Cards: 1 por vez en celular */
@@ -1177,7 +1324,9 @@ footer {
         flex-basis: 100%;
     }
 
-    .proyectos-track { gap: 16px; }
+    .proyectos-track {
+        gap: 16px;
+    }
 }
 
 
@@ -1189,7 +1338,9 @@ footer {
 @media (max-width: 600px) {
 
     /* Header: más compacto aún */
-    :root { --header-h: 100px; }
+    :root {
+        --header-h: 100px;
+    }
 
     .header-container {
         padding-top: 12px;
@@ -1198,10 +1349,18 @@ footer {
     }
 
     /* Logo: en celular vuelve a un tamaño visible, no miniatura */
-    .logo img { height: 46px; }
+    .logo img {
+        height: 46px;
+    }
 
-    .nav { gap: 6px 14px; }
-    .nav a { font-size: 12px; letter-spacing: 0.03em; }
+    .nav {
+        gap: 6px 14px;
+    }
+
+    .nav a {
+        font-size: 12px;
+        letter-spacing: 0.03em;
+    }
 
     /* Hero: imagen en flujo normal, más chica y centrada */
     .hero {
@@ -1221,20 +1380,33 @@ footer {
     }
 
     /* Sección estudio */
-    #estudio { text-align: left; }
-    #estudio > h3 { margin-bottom: 40px; }
+    #estudio {
+        text-align: left;
+    }
+
+    #estudio>h3 {
+        margin-bottom: 40px;
+    }
 
     /* Equipo: header alineado a la izquierda */
-    .equipo-header { margin-bottom: 32px; }
+    .equipo-header {
+        margin-bottom: 32px;
+    }
 
     /* Clientes: 2→1 columna */
-    .clientes-grid { grid-template-columns: 1fr; }
+    .clientes-grid {
+        grid-template-columns: 1fr;
+    }
 
     /* Clientes: sin clip-path en celular (el corte diagonal se ve mal) */
-    #clientes { clip-path: none; }
+    #clientes {
+        clip-path: none;
+    }
 
     /* Contacto: título más chico */
-    .contacto-top h2 { font-size: clamp(28px, 8vw, 40px); }
+    .contacto-top h2 {
+        font-size: clamp(28px, 8vw, 40px);
+    }
 
     /* Botón CTA ancho completo */
     .contacto-cta {
@@ -1244,11 +1416,25 @@ footer {
     }
 
     /* Footer: todo en 1 columna */
-    .footer-contenido { grid-template-columns: 1fr; gap: 28px; }
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
 
     /* Botones flotantes: más pegados al borde */
-    .whatsapp-float { right: 14px; bottom: 70px; width: 52px; height: 52px; }
-    .volver-arriba  { right: 14px; bottom: 12px; width: 42px; height: 42px; }
+    .whatsapp-float {
+        right: 14px;
+        bottom: 70px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .volver-arriba {
+        right: 14px;
+        bottom: 12px;
+        width: 42px;
+        height: 42px;
+    }
 }
 
 
@@ -1258,24 +1444,47 @@ footer {
    ------------------------------------------------------------------ */
 @media (max-width: 430px) {
 
-    .logo img { height: 40px; }
+    .logo img {
+        height: 40px;
+    }
 
-    .nav { gap: 5px 10px; }
-    .nav a { font-size: 11px; }
+    .nav {
+        gap: 5px 10px;
+    }
+
+    .nav a {
+        font-size: 11px;
+    }
 
     /* Hero aún más compacto */
-    .hero { padding: 28px var(--page-x) 0; }
-    .hero-visual { width: min(98vw, 420px); margin-top: 20px; }
+    .hero {
+        padding: 28px var(--page-x) 0;
+    }
+
+    .hero-visual {
+        width: min(98vw, 420px);
+        margin-top: 20px;
+    }
 
     /* Imagen de proyectos más baja */
-    .proyecto-img { height: 200px; }
+    .proyecto-img {
+        height: 200px;
+    }
 
     /* Card del equipo: altura mínima más baja */
-    .equipo-card { min-height: 360px; }
+    .equipo-card {
+        min-height: 360px;
+    }
 
     /* Texto de equipo más compacto */
-    .equipo-info h3 { font-size: 1.1rem; }
-    .equipo-info p  { font-size: 0.85rem; line-height: 1.55; }
+    .equipo-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .equipo-info p {
+        font-size: 0.85rem;
+        line-height: 1.55;
+    }
 }
 
 
@@ -1284,7 +1493,10 @@ footer {
    Si el sistema operativo pide menos movimiento, bajamos todo.
    ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
