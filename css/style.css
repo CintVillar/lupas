@@ -997,7 +997,7 @@ footer {
 .volver-arriba {
     position: fixed;
     right: 24px;
-    bottom: 16px;
+    bottom: 150px; /* antes 16px → ahora queda arriba del botón de WhatsApp */
     z-index: 999;
     width: 46px;
     height: 46px;

@@ -74,7 +74,7 @@
         <section class="hero">
 
             <!-- CAPA 0: imagen de fondo — usa object-fit cover para llenar sin estirar -->
-            <img src="./imagenes/monitor byn.png"
+            <img src="./imagenes/monitor hero.png"
                  alt=""
                  class="hero-bg-img"
                  aria-hidden="true">
@@ -480,11 +480,19 @@
 
     <!-- Botón volver arriba: aparece al bajar 400px -->
     <script>
-        const volverBtn = document.querySelector(".volver-arriba");
-        window.addEventListener("scroll", () => {
-            volverBtn.classList.toggle("visible", window.scrollY > 400);
-        });
-    </script>
+const volverBtn = document.querySelector('.volver-arriba');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    // aparece solo cerca del final
+    const cercaDelFinal = scrollY + windowHeight > docHeight - 300;
+
+    volverBtn.classList.toggle('visible', cercaDelFinal);
+});
+</script>
 
     <!-- Header con fondo dinámico:
          - Al inicio (scrollY < 80): transparente, se fusiona con el hero
