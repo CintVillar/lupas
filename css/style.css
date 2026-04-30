@@ -1,5 +1,5 @@
 /* ================================================== */
-/* RESET */
+/* RESET                                              */
 /* ================================================== */
 *,
 *::before,
@@ -22,52 +22,41 @@ img {
 }
 
 /* ================================================== */
-/* VARIABLES GLOBALES */
+/* VARIABLES GLOBALES                                 */
 /* ================================================== */
 :root {
-    /* Backgrounds — todos dentro de la misma familia fría-oscura */
-    --bg: #0d0d0d;
-    /* base más oscura */
-    --bg-soft: #111111;
-    /* secciones alternas */
-    --bg-card: #181818;
-    /* cards */
-    --bg-card-2: #1e1e1e;
+    --bg:          #0d0d0d;
+    --bg-soft:     #111111;
+    --bg-card:     #181818;
+    --bg-card-2:   #1e1e1e;
 
-    /* Texto */
-    --text: #efefef;
-    --text-soft: #c4c4c4;
-    --text-muted: #888888;
+    --text:        #efefef;
+    --text-soft:   #c4c4c4;
+    --text-muted:  #888888;
 
-    /* Líneas / bordes */
-    --line: rgba(255, 255, 255, 0.07);
+    --line:        rgba(255, 255, 255, 0.07);
     --line-strong: rgba(255, 255, 255, 0.14);
 
-    /* Acento: un gris-azulado muy sutil, profesional */
-    --accent: #3a7bd5;
+    --accent:      #3a7bd5;
     --accent-soft: rgba(58, 123, 213, 0.12);
 
-    /* Utilidades */
-    --white: #ffffff;
-    --radius: 16px;
-    --radius-sm: 10px;
-    --container: 1200px;
+    --white:       #ffffff;
+    --radius:      16px;
+    --radius-sm:   10px;
+    --container:   1200px;
     --container-wide: 1280px;
 
-    /* Espaciado fluido */
-    --page-x: clamp(16px, 4vw, 48px);
+    --page-x:    clamp(16px, 4vw, 48px);
     --section-y: clamp(72px, 8vw, 110px);
 
-    /* Header offset para scroll-margin */
     --header-h: 80px;
 
-    /* Tipografía */
     --font-head: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
 
 /* ================================================== */
-/* BASE */
+/* BASE                                               */
 /* ================================================== */
 body {
     background-color: var(--bg);
@@ -92,10 +81,7 @@ body {
     scroll-margin-top: calc(var(--header-h) + 16px);
 }
 
-main,
-header,
-footer,
-section {
+main, header, footer, section {
     width: 100%;
 }
 
@@ -105,19 +91,35 @@ a {
 
 
 /* ================================================== */
-/* HEADER */
-/* Tamaño más ajustado, profesional */
+/* HEADER                                             */
+/*                                                    */
+/* position: fixed — el header se queda siempre       */
+/* pegado en la parte superior de la VENTANA,         */
+/* sin importar cuánto scrolleás. left/right:0        */
+/* garantizan que ocupa todo el ancho.                */
+/*                                                    */
+/* El JS agrega .scrolled cuando scrollY > 80px      */
+/* para pasar de fondo transparente a oscuro sólido.  */
 /* ================================================== */
 .header {
-    position: sticky;
+    position: fixed;          /* FIJO: se mueve con la ventana, no con la página */
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     height: var(--header-h);
-    background: linear-gradient(180deg, rgba(5, 6, 8, 0.80) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(5, 6, 8, 0.85) 0%, rgba(5,6,8,0.0) 100%);
     border-bottom: none;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: none;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.header.scrolled {
+    background: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .header-container {
@@ -131,23 +133,17 @@ a {
     gap: 24px;
 }
 
-/* Logo — tamaño equilibrado, no gigante */
-.logo {
-    flex-shrink: 0;
-}
+.logo { flex-shrink: 0; }
 
 .logo img {
-    height: 100px;
+    height: 54px;
     width: auto;
     object-fit: contain;
     transition: opacity 0.25s ease;
 }
 
-.logo img:hover {
-    opacity: 0.75;
-}
+.logo img:hover { opacity: 0.75; }
 
-/* Nav */
 .nav {
     display: flex;
     align-items: center;
@@ -167,39 +163,47 @@ a {
     white-space: nowrap;
 }
 
-.nav a:hover {
-    color: var(--white);
-}
+.nav a:hover { color: var(--white); }
 
 .nav a::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 1px;
+    left: 0; bottom: -4px;
+    width: 0; height: 1px;
     background: var(--white);
     transition: width 0.3s ease;
 }
 
-.nav a:hover::after {
+.nav a:hover::after { width: 100%; }
+
+
+/* ================================================== */
+/* HERO                                               */
+/* ================================================== */
+
+.hero-bg-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+    pointer-events: none;
 }
 
-
-/* ================================================== */
-/* HERO */
-/* ================================================== */
 .hero {
-    margin-top: calc(var(--header-h) * -1);
-    padding-top: var(--header-h);
+    margin-top: 0;
+    padding-top: 0;
     position: relative;
     min-height: 100vh;
     overflow: hidden;
-    background:
-
-        linear-gradient(180deg, rgba(5, 6, 8, 0.25) 0%, rgba(5, 6, 8, 0.15) 40%, rgba(5, 6, 8, 0.45) 100%),
-        url('../imagenes/fondo_1.png') center/cover no-repeat;
+    background: linear-gradient(
+        180deg,
+        rgba(5, 6, 8, 0.25) 0%,
+        rgba(5, 6, 8, 0.15) 40%,
+        rgba(5, 6, 8, 0.45) 100%
+    );
 }
 
 .hero-bg-track {
@@ -221,8 +225,6 @@ a {
 
 .hero-bg-text span {
     white-space: nowrap;
-    padding-left: 0px;
-    padding-right: 0px;
     font-family: var(--font-head);
     font-size: clamp(52px, 7.5vw, 148px);
     font-weight: 700;
@@ -232,66 +234,32 @@ a {
     color: rgba(255, 255, 255, 0.70);
 }
 
-
 @keyframes scrollInfinito {
-    from {
-        transform: translate(0, -41%);
-    }
-
-    to {
-        transform: translate(-50%, -41%);
-    }
+    from { transform: translate(0, -41%); }
+    to   { transform: translate(-50%, -41%); }
 }
 
-.hero-visual {
-    position: absolute;
-    right: clamp(-120px, -6vw, -30px);
-    top: 62%;
-    transform: translateY(-50%);
-    width: min(76vw, 1100px);
-    z-index: 3;
-    pointer-events: none;
-}
-
-.hero-visual::before {
-    content: "";
-    position: absolute;
-    inset: 16% 12%;
-    background: rgba(58, 123, 213, 0.07);
-    filter: blur(120px);
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.hero-visual img {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.90)) brightness(1.05) contrast(1.05) saturate(0.85);
-}
-
-/* Degradado lateral que suaviza el recorte de la imagen */
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(90deg,
-            #070809 0%,
-            rgba(7, 8, 9, 0.88) 7%,
-            transparent 18%,
-            transparent 82%,
-            rgba(7, 8, 9, 0.88) 93%,
-            #070809 100%);
+    background: linear-gradient(
+        90deg,
+        #070809 0%,
+        rgba(7, 8, 9, 0.88) 7%,
+        transparent 18%,
+        transparent 82%,
+        rgba(7, 8, 9, 0.88) 93%,
+        #070809 100%
+    );
 }
 
-/* Estructura encima del texto — mix-blend-mode elimina el negro */
 .hero-estructura {
     position: absolute;
     right: -20px;
-    bottom: 40;
+    bottom: 0;
     width: min(65vw, 900px);
     z-index: 3;
     pointer-events: none;
@@ -302,7 +270,6 @@ a {
     height: auto;
     display: block;
     mix-blend-mode: screen;
-    /* magia: elimina el negro, deja la estructura */
     filter: brightness(1.1) contrast(1.05);
 }
 
@@ -312,7 +279,6 @@ a {
     left: clamp(20px, 4vw, 56px);
     z-index: 4;
     pointer-events: none;
-    padding-bottom: 0;
 }
 
 .hero-tagline p {
@@ -335,22 +301,26 @@ a {
     text-transform: uppercase;
 }
 
+
 /* ================================================== */
-/* SECCIÓN ESTUDIO */
-/* bg consistente con el resto de la página */
+/* SECCIÓN ESTUDIO                                    */
 /* ================================================== */
 #estudio {
-    background: var(--bg-soft);
-    /* #111111 — sin corte abrupto */
     padding: var(--section-y) var(--page-x);
     text-align: center;
     background:
-        linear-gradient(rgba(13, 13, 13, 0.65), rgba(13, 13, 13, 0.75)),
-        url('../imagenes/equipo.jpg') center/cover no-repeat;
+        linear-gradient(
+            to bottom,
+            rgba(13, 13, 13, 1) 0%,
+            rgba(13, 13, 13, 0.60) 15%,
+            rgba(13, 13, 13, 0.55) 75%,
+            rgba(13, 13, 13, 1) 100%
+        ),
+        url('../imagenes/equipo.png') center / cover no-repeat;
     background-attachment: fixed;
 }
 
-#estudio>h2 {
+#estudio > h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 600;
@@ -358,7 +328,7 @@ a {
     margin-bottom: 16px;
 }
 
-#estudio>h3 {
+#estudio > h3 {
     font-family: var(--font-body);
     font-size: clamp(15px, 1.6vw, 18px);
     font-weight: 300;
@@ -370,13 +340,9 @@ a {
 
 
 /* ================================================== */
-/* EQUIPO — GRID fijo de 4 cards */
-/* No hay carrusel. Los 4 se ven siempre en desktop. */
-/* La imagen NO se corta en hover: el panel de info */
-/* aparece sobre la imagen con un overlay oscuro. */
+/* EQUIPO                                             */
 /* ================================================== */
 .equipo-section {
-    background: var(--bg-soft);
     padding: 0 0 var(--section-y);
     color: var(--white);
     text-align: left;
@@ -409,7 +375,6 @@ a {
     color: #f0f0f0;
 }
 
-/* Grid de 4 columnas en desktop */
 .equipo-grid {
     max-width: var(--container);
     margin: 0 auto;
@@ -419,7 +384,6 @@ a {
     gap: 20px;
 }
 
-/* Cada card */
 .equipo-card {
     position: relative;
     height: clamp(420px, 38vw, 580px);
@@ -429,7 +393,6 @@ a {
     cursor: default;
 }
 
-/* Imagen: ocupa toda la card */
 .equipo-visual {
     position: absolute;
     inset: 0;
@@ -445,25 +408,23 @@ a {
     transition: transform 0.6s ease;
 }
 
-/* Overlay gradiente siempre presente (parte inferior más oscura) */
 .equipo-visual::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top,
-            rgba(0, 0, 0, 0.85) 0%,
-            rgba(0, 0, 0, 0.30) 45%,
-            rgba(0, 0, 0, 0.0) 100%);
-    transition: opacity 0.4s ease;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.30) 45%,
+        rgba(0, 0, 0, 0.0) 100%
+    );
+    transition: background 0.4s ease;
     z-index: 2;
 }
 
-/* Info siempre visible abajo, dentro del overlay */
 .equipo-info {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 0; right: 0; bottom: 0;
     z-index: 3;
     padding: 22px 22px 24px;
 }
@@ -486,7 +447,6 @@ a {
     letter-spacing: 0.03em;
 }
 
-/* Descripción oculta: se revela en hover con transform */
 .equipo-info p {
     font-size: 0.875rem;
     line-height: 1.6;
@@ -498,7 +458,6 @@ a {
     transition: max-height 0.4s ease, opacity 0.35s ease, transform 0.35s ease;
 }
 
-/* Hover: sólo la descripción se asoma — imagen NO se mueve */
 .equipo-card:hover .equipo-visual img {
     transform: scale(1.04);
 }
@@ -509,292 +468,207 @@ a {
     transform: translateY(0);
 }
 
-/* Intensificamos el overlay oscuro en hover */
 .equipo-card:hover .equipo-visual::after {
-    opacity: 1.4;
-    /* no se puede pasar de 1, pero hace que sea más oscuro si el valor de opacidad base lo permite */
-    background: linear-gradient(to top,
-            rgba(0, 0, 0, 0.94) 0%,
-            rgba(0, 0, 0, 0.50) 50%,
-            rgba(0, 0, 0, 0.05) 100%);
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.94) 0%,
+        rgba(0, 0, 0, 0.50) 50%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
 }
 
 
 /* ================================================== */
-/* PROYECTOS */
+/* PROYECTOS                                          */
 /* ================================================== */
 #proyectos {
     position: relative;
+    padding: clamp(70px, 8vw, 110px) var(--page-x);
+    background: #050505;
     overflow: hidden;
-    padding: var(--section-y) var(--page-x);
-    background: var(--bg);
 }
 
 .proyectos-header {
-    max-width: 780px;
-    margin: 0 auto 52px;
-    text-align: center;
+    max-width: var(--container-wide);
+    margin: 0 auto 28px;
+    text-align: left;
 }
 
 .proyectos-tag {
-    display: inline-block;
+    display: block;
     font-size: 11px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     color: var(--text-muted);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     font-family: var(--font-body);
 }
 
 .proyectos-header h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--white);
-    margin-bottom: 14px;
     line-height: 1.1;
 }
 
-.proyectos-header p {
-    font-size: clamp(15px, 1.5vw, 17px);
-    color: var(--text-soft);
-    line-height: 1.65;
-}
-
-.proyectos-wrapper {
+.proyectos-grid {
     max-width: var(--container-wide);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 54px minmax(0, 1fr) 54px;
-    align-items: center;
-    gap: 16px;
-}
-
-.proyectos-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid var(--line-strong);
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--white);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-}
-
-.proyectos-btn:hover {
-    background: rgba(255, 255, 255, 0.09);
-    border-color: rgba(255, 255, 255, 0.22);
-    transform: scale(1.05);
-}
-
-.proyectos-btn:disabled {
-    opacity: 0.28;
-    cursor: default;
-    transform: none;
-}
-
-.proyectos-carrusel {
-    overflow: hidden;
-    width: 100%;
-}
-
-.proyectos-track {
-    display: flex;
+    grid-template-columns: repeat(4, 1fr);
     gap: 22px;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
 }
 
 .proyecto-card {
-    flex: 0 0 calc((100% - 44px) / 3);
-    min-width: 0;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: var(--radius);
+    background: transparent;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
     text-decoration: none;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--white);
 }
 
-.proyecto-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+.proyecto-principal {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(240px, 1fr);
+    gap: 22px;
+    align-items: start;
+}
+
+.proyecto-principal .proyecto-img {
+    height: clamp(320px, 42vw, 520px);
+}
+
+.proyecto-card:not(.proyecto-principal) .proyecto-img {
+    height: clamp(160px, 18vw, 230px);
 }
 
 .proyecto-img {
-    height: clamp(220px, 22vw, 300px);
+    width: 100%;
     overflow: hidden;
-    background: #0a0a0a;
+    background: #111;
 }
 
 .proyecto-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    filter: saturate(0.9) contrast(1.02);
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .proyecto-card:hover .proyecto-img img {
-    transform: scale(1.04);
+    transform: scale(1.035);
+    filter: saturate(1) contrast(1.05);
 }
 
 .proyecto-info {
-    padding: 18px 20px 20px;
+    padding-top: 12px;
 }
 
-.proyecto-info h4 {
-    font-family: var(--font-head);
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 5px;
+.proyecto-principal .proyecto-info {
+    padding-top: 0;
 }
 
 .proyecto-info span {
     display: block;
-    font-size: 13px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
 }
 
-/* Card instagram */
-.proyecto-instagram {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px 22px;
-    background: var(--bg-card);
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    min-height: 240px;
-}
-
-.proyecto-instagram:hover {
-    border-color: rgba(255, 255, 255, 0.30);
-}
-
-.insta-mas {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 38px;
+.proyecto-info h4 {
+    font-family: var(--font-head);
+    font-size: clamp(15px, 1.4vw, 20px);
+    font-weight: 500;
     color: var(--white);
-    margin-bottom: 16px;
-    transition: background 0.25s ease;
+    line-height: 1.2;
+    margin-bottom: 4px;
 }
 
-.proyecto-instagram:hover .insta-mas {
-    background: rgba(255, 255, 255, 0.11);
+.proyecto-principal .proyecto-info h4 {
+    font-size: clamp(20px, 2vw, 30px);
 }
 
-.proyecto-instagram p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-soft);
-    max-width: 180px;
+.proyecto-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
 }
 
 
 /* ================================================== */
-/* CLIENTES */
-/* Fondo claro uniforme, sin línea de corte visible */
-/* clip-path solo en desktop para no generar artefactos */
+/* CLIENTES                                           */
 /* ================================================== */
 #clientes {
-    position: relative;
-    padding: clamp(90px, 10vw, 130px) var(--page-x) clamp(80px, 9vw, 110px);
-    text-align: center;
-    background: #f4f4f4;
-    /* fondo plano claro — sin imagen que genere bordes raros */
-    overflow: hidden;
-}
-
-/* Corte diagonal solo en pantallas anchas */
-@media (min-width: 601px) {
-    #clientes {
-        clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 100%);
-    }
+    padding: clamp(70px, 8vw, 110px) var(--page-x);
+    background: #ffffff;
 }
 
 .clientes-header {
-    max-width: 720px;
-    margin: 0 auto 52px;
+    max-width: var(--container-wide);
+    margin: 0 auto 40px;
 }
 
 .clientes-tag {
-    display: inline-block;
+    display: block;
     font-size: 11px;
-    letter-spacing: 0.22em;
-    color: #888;
-    margin-bottom: 14px;
+    letter-spacing: 0.24em;
+    color: #777;
+    margin-bottom: 10px;
 }
 
 .clientes-header h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
-    font-weight: 600;
+    font-weight: 500;
     color: #111;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .clientes-header p {
-    font-size: clamp(14px, 1.5vw, 17px);
-    color: #555;
-    line-height: 1.65;
+    font-size: 14px;
+    color: #666;
+    max-width: 520px;
 }
 
 .clientes-grid {
-    max-width: var(--container);
+    max-width: var(--container-wide);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px 30px;
+    align-items: center;
 }
 
 .cliente-logo {
-    min-height: 140px;
-    padding: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: #ffffff;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cliente-logo:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
 }
 
 .cliente-logo img {
-    max-width: 160px;
-    max-height: 72px;
+    max-height: 38px;
     width: auto;
-    height: auto;
-    object-fit: contain;
-    opacity: 0.90;
-    transition: opacity 0.3s ease;
+    max-width: 120px;
+    filter: grayscale(100%) contrast(0.9);
+    opacity: 0.7;
+    transition: all 0.3s ease;
 }
 
 .cliente-logo:hover img {
+    filter: grayscale(0%);
     opacity: 1;
+    transform: scale(1.05);
 }
 
 
 /* ================================================== */
-/* CONTACTO */
+/* CONTACTO                                           */
 /* ================================================== */
 #contacto {
     position: relative;
@@ -822,9 +696,7 @@ a {
     z-index: 2;
 }
 
-.contacto-top {
-    margin-bottom: 32px;
-}
+.contacto-top { margin-bottom: 32px; }
 
 .contacto-tag {
     display: inline-block;
@@ -855,9 +727,7 @@ a {
     gap: clamp(32px, 5vw, 70px);
 }
 
-.contacto-col-izq {
-    padding-right: 20px;
-}
+.contacto-col-izq { padding-right: 20px; }
 
 .contacto-texto {
     font-size: clamp(16px, 1.8vw, 21px);
@@ -895,17 +765,10 @@ a {
     overflow-wrap: anywhere;
 }
 
-.contacto-item a {
-    transition: color 0.25s ease;
-}
+.contacto-item a { transition: color 0.25s ease; }
+.contacto-item a:hover { color: #aac9f5; }
 
-.contacto-item a:hover {
-    color: #aac9f5;
-}
-
-.contacto-cta-wrap {
-    margin-top: 48px;
-}
+.contacto-cta-wrap { margin-top: 48px; }
 
 .contacto-cta {
     display: inline-flex;
@@ -931,8 +794,7 @@ a {
 
 
 /* ================================================== */
-/* FOOTER — rediseño completo */
-/* Limpio, jerárquico, profesional */
+/* FOOTER                                             */
 /* ================================================== */
 footer {
     background: #0a0a0a;
@@ -953,7 +815,6 @@ footer {
     padding-bottom: 48px;
 }
 
-/* Logo columna marca */
 .footer-logo-img {
     height: 52px;
     width: auto;
@@ -988,11 +849,25 @@ footer {
     transition: color 0.25s ease;
 }
 
-.footer-col a:hover {
-    color: var(--white);
-}
+.footer-col a:hover { color: var(--white); }
 
-/* Redes */
+/* ================================================== */
+/* REDES SOCIALES — ÍCONOS EN CÍRCULOS                */
+/*                                                    */
+/* CORRECCIÓN DEFINITIVA del descentrado:             */
+/*                                                    */
+/* El problema era que los SVG tenían width/height    */
+/* hardcodeados en el HTML (width="20" height="20").  */
+/* Cuando el browser los renderiza como inline, esos  */
+/* atributos compiten con el CSS y ganan, generando   */
+/* un tamaño incorrecto que rompe el centrado.        */
+/*                                                    */
+/* Solución: se eliminaron width/height del HTML y    */
+/* se controla el tamaño 100% desde acá con           */
+/* .red-icono svg { width: 22px; height: 22px }.      */
+/* Así el browser no tiene ambigüedad y el flex       */
+/* del contenedor los centra perfectamente.           */
+/* ================================================== */
 .footer-redes {
     display: flex;
     gap: 12px;
@@ -1001,52 +876,71 @@ footer {
 
 .red-icono {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;       /* centra el SVG verticalmente */
+    justify-content: center;   /* centra el SVG horizontalmente */
     width: 42px;
     height: 42px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.10);
     border-radius: 50%;
     color: #888888;
-    /* color neutro en reposo */
-    transition: background 0.25s ease, border-color 0.25s ease,
-        color 0.25s ease, transform 0.25s ease;
     text-decoration: none;
+    line-height: 1;            /* evita que el line-height empuje el SVG */
+    transition: background 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, transform 0.25s ease;
 }
 
-.red-icono:hover {
-    transform: translateY(-3px);
+/* CLAVE: el tamaño del SVG se define SOLO desde CSS  */
+/* El viewBox del SVG escala el contenido internamente */
+.red-icono {
+    display: flex !important;   /* Fuerza el contenedor flex */
+    justify-content: center;    /* Centra horizontal */
+    align-items: center;        /* Centra vertical */
+    
+    width: 50px;                /* Círculo más grande */
+    height: 50px; 
+    border-radius: 50%;
+    background-color: #ffffffa3;     /* Fondo blanco para que resalte */
+    overflow: hidden;           /* Corta cualquier cosa que intente salirse */
+    position: relative;         /* Resetea coordenadas */
+    transition: transform 0.3s;
 }
 
-/* WhatsApp: verde al hover */
+.red-icono svg {
+    width: 30px !important;     /* Tamaño del ícono a la mitad del círculo */
+    height: 30px !important;
+    display: block;
+    margin: 0 auto;             /* Refuerza el centrado */
+    flex-shrink: 0;
+}
+
+.red-icono:hover { transform: translateY(-3px); }
+
+
+
 .red-wpp:hover {
     color: #25D366;
     background: rgba(37, 211, 102, 0.10);
     border-color: rgba(37, 211, 102, 0.30);
 }
 
-/* Instagram: naranja/rosa al hover */
 .red-ig:hover {
     color: #E1306C;
     background: rgba(225, 48, 108, 0.10);
     border-color: rgba(225, 48, 108, 0.28);
 }
 
-/* Email: azul al hover */
 .red-mail:hover {
     color: #4A9EFF;
     background: rgba(74, 158, 255, 0.10);
     border-color: rgba(74, 158, 255, 0.28);
 }
 
-/* Divider */
 .footer-divider {
     height: 1px;
     background: rgba(255, 255, 255, 0.07);
 }
 
-/* Copy */
 .footer-copy {
     padding: 24px 0 28px;
     display: flex;
@@ -1056,11 +950,7 @@ footer {
     gap: 8px;
 }
 
-.footer-copy p {
-    font-size: 13px;
-    color: #4e4e4e;
-}
-
+.footer-copy p,
 .footer-credit {
     font-size: 13px;
     color: #4e4e4e;
@@ -1068,14 +958,12 @@ footer {
 
 
 /* ================================================== */
-/* BOTÓN FLOTANTE WHATSAPP */
-/* Verde WhatsApp, esquina inferior derecha */
+/* BOTÓN FLOTANTE WHATSAPP                            */
 /* ================================================== */
 .whatsapp-float {
     position: fixed;
     right: 24px;
     bottom: 80px;
-    /* encima del botón volver arriba */
     z-index: 998;
     width: 52px;
     height: 52px;
@@ -1094,13 +982,17 @@ footer {
     box-shadow: 0 10px 30px rgba(37, 211, 102, 0.50);
 }
 
+/* SVG del botón flotante: tamaño fijo 28px desde CSS */
 .whatsapp-float svg {
     display: block;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 }
 
 
 /* ================================================== */
-/* BOTÓN VOLVER ARRIBA */
+/* BOTÓN VOLVER ARRIBA                                */
 /* ================================================== */
 .volver-arriba {
     position: fixed;
@@ -1146,48 +1038,25 @@ footer {
 
 
 /* ==================================================================
-   RESPONSIVE — SISTEMA COMPLETO
-   Lógica: mobile-first thinking pero escrito top-down (desktop base).
-   Breakpoints: 1100 → 900 → 760 → 600 → 430
-   Cada breakpoint solo corrige lo que cambia — sin repetir.
+   RESPONSIVE
    ================================================================== */
 
-
-/* ------------------------------------------------------------------
-   1100px — Notebooks chicas / tablets grandes en horizontal
-   Equipo: 4→2 columnas. Proyectos: 3→2 cards visibles.
-   ------------------------------------------------------------------ */
+/* 1100px — Equipo: 4 → 2 columnas */
 @media (max-width: 1100px) {
 
-    /* Equipo: de 4 columnas a 2 */
     .equipo-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 18px;
     }
-
-    /* Proyectos: cards de 2 en 2 */
-    .proyecto-card {
-        flex-basis: calc((100% - 22px) / 2);
-    }
 }
 
 
-/* ------------------------------------------------------------------
-   900px — Tablets en vertical / notebooks muy chicas
-   Header colapsa en dos líneas. Hero: imagen centrada.
-   Layouts de 2 columnas pasan a 1.
-   ------------------------------------------------------------------ */
+/* 900px — Tablets vertical */
 @media (max-width: 900px) {
 
-    /* Header: logo encima, nav abajo */
-    :root {
-        --header-h: 108px;
-    }
+    :root { --header-h: 108px; }
 
-    .header {
-        height: auto;
-        /* ya no tiene altura fija */
-    }
+    .header { height: auto; }
 
     .header-container {
         flex-direction: column;
@@ -1197,8 +1066,6 @@ footer {
         gap: 10px;
     }
 
-
-
     .nav {
         width: 100%;
         justify-content: center;
@@ -1206,56 +1073,33 @@ footer {
         gap: 8px 18px;
     }
 
-    .nav a {
-        font-size: 13px;
-    }
+    .nav a { font-size: 13px; }
 
-    /* Hero: la imagen pasa a estar centrada (no pegada a la derecha) */
-    .hero {
-        min-height: auto;
-        padding: 48px var(--page-x) 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-
-    /* En tablet el hero-visual deja de ser absolute y entra al flujo */
-    .hero-visual {
-        position: relative;
-        right: auto;
-        left: auto;
-        top: auto;
-        transform: none;
-        width: min(90vw, 700px);
-        margin-top: 32px;
-    }
-
-    /* El texto de fondo queda fijo arriba */
-    .hero-bg-text {
-        top: 28px;
-    }
-
-    /* Equipo: ya está en 2 col desde 1100px, se mantiene */
-
-    /* Clientes: 3→2 columnas */
-    .clientes-grid {
+    .proyectos-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Contacto: 2 columnas → 1 columna */
+    .proyecto-principal {
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+    }
+
+    .proyecto-principal .proyecto-img {
+        height: clamp(260px, 55vw, 420px);
+    }
+
+    .clientes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
     .contacto-contenido {
         grid-template-columns: 1fr;
         gap: 36px;
     }
 
-    .contacto-col-izq {
-        padding-right: 0;
-    }
+    .contacto-col-izq { padding-right: 0; }
 
-    /* Footer: 4 col → 2 col */
     .footer-contenido {
         grid-template-columns: 1fr 1fr;
         gap: 32px 24px;
@@ -1263,85 +1107,32 @@ footer {
 }
 
 
-/* ------------------------------------------------------------------
-   760px — Celulares grandes (iPhone Pro Max, Samsung Galaxy)
-   Todo pasa a 1 columna. Equipo sin hover (info siempre visible).
-   Proyectos: carrusel de 1 card. Botones abajo del carrusel.
-   ------------------------------------------------------------------ */
+/* 760px — Celulares grandes */
 @media (max-width: 760px) {
 
-    /* Equipo: 2→1 columna */
     .equipo-grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
-    /* Card de equipo: altura más compacta en celular */
     .equipo-card {
         height: auto;
-        /* ya no fijamos altura: el contenido la define */
         min-height: 320px;
     }
 
-    /* En celular no hay hover real: descripción siempre visible */
+    /* Descripción siempre visible en celular (sin hover) */
     .equipo-info p {
         max-height: 200px;
         opacity: 1;
         transform: translateY(0);
     }
-
-    /* Proyectos: wrapper pasa a 1 sola columna.
-       El carrusel queda arriba, los botones abajo en fila. */
-    .proyectos-wrapper {
-        grid-template-columns: 1fr;
-        /* elimina columnas de botones */
-        grid-template-rows: auto auto;
-        gap: 16px;
-    }
-
-    /* El carrusel ocupa toda la fila 1 */
-    .proyectos-carrusel {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    /* Los dos botones van en fila 2, uno a cada lado */
-    .proyectos-prev {
-        grid-column: 1;
-        grid-row: 2;
-        justify-self: start;
-    }
-
-    .proyectos-next {
-        grid-column: 1;
-        grid-row: 2;
-        justify-self: end;
-        margin-top: 0;
-        /* elimina el hack de margin negativo */
-    }
-
-    /* Cards: 1 por vez en celular */
-    .proyecto-card {
-        flex-basis: 100%;
-    }
-
-    .proyectos-track {
-        gap: 16px;
-    }
 }
 
 
-/* ------------------------------------------------------------------
-   600px — Celulares medianos (iPhone 14, Pixel 7, Galaxy S)
-   Ajustes finos: nav más compacto, hero más corto,
-   clientes 1 col, footer 1 col, botones flotantes más chicos.
-   ------------------------------------------------------------------ */
+/* 600px — Celulares medianos */
 @media (max-width: 600px) {
 
-    /* Header: más compacto aún */
-    :root {
-        --header-h: 100px;
-    }
+    :root { --header-h: 100px; }
 
     .header-container {
         padding-top: 12px;
@@ -1349,164 +1140,92 @@ footer {
         gap: 8px;
     }
 
-    /* Logo: en celular vuelve a un tamaño visible, no miniatura */
     .logo img {
         height: 44px;
         filter: brightness(0) invert(1);
     }
 
-    .nav {
-        gap: 6px 14px;
-    }
+    .nav { gap: 6px 14px; }
+    .nav a { font-size: 12px; letter-spacing: 0.03em; }
 
-    .nav a {
-        font-size: 12px;
-        letter-spacing: 0.03em;
-    }
-
-    /* Hero: imagen en flujo normal, más chica y centrada */
-    .hero {
-        min-height: auto;
-        padding: 36px var(--page-x) 0;
-    }
-
-    .hero-visual {
-        width: min(95vw, 500px);
-        margin-top: 24px;
-    }
-
-    /* Texto de fondo del hero: más chico */
-    .hero-bg-text span {
-        font-size: clamp(44px, 12vw, 72px);
-        padding-right: 44px;
-    }
     .hero-tagline {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    padding: 20px var(--page-x) 24px;
-    text-align: left;
-}
+        position: relative;
+        bottom: auto;
+        left: auto;
+        padding: 20px var(--page-x) 24px;
+        text-align: left;
+    }
 
-    /* Sección estudio */
     #estudio {
         text-align: left;
         background-attachment: scroll;
     }
 
-    #estudio>h3 {
-        margin-bottom: 40px;
-    }
+    #estudio > h3 { margin-bottom: 40px; }
 
-    /* Equipo: header alineado a la izquierda */
-    .equipo-header {
-        margin-bottom: 32px;
-    }
+    .equipo-header { margin-bottom: 32px; }
 
-    /* Clientes: 2→1 columna */
-    .clientes-grid {
+    #proyectos { padding: 70px var(--page-x); }
+
+    .proyectos-header { margin-bottom: 22px; }
+
+    .proyectos-grid {
         grid-template-columns: 1fr;
+        gap: 26px;
     }
 
-    /* Clientes: sin clip-path en celular (el corte diagonal se ve mal) */
-    #clientes {
-        clip-path: none;
+    .proyecto-principal { display: block; }
+
+    .proyecto-principal .proyecto-img,
+    .proyecto-card:not(.proyecto-principal) .proyecto-img {
+        height: 230px;
     }
 
-    /* Contacto: título más chico */
-    .contacto-top h2 {
-        font-size: clamp(28px, 8vw, 40px);
+    .proyecto-info { padding-top: 10px; }
+
+    .clientes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
     }
 
-    /* Botón CTA ancho completo */
+    .cliente-logo img { max-height: 32px; }
+
+    .contacto-top h2 { font-size: clamp(28px, 8vw, 40px); }
+
     .contacto-cta {
         width: 100%;
         max-width: 300px;
         justify-content: center;
     }
 
-    /* Footer: todo en 1 columna */
     .footer-contenido {
         grid-template-columns: 1fr;
         gap: 28px;
     }
 
-    /* Botones flotantes: más pegados al borde */
-    .whatsapp-float {
-        right: 14px;
-        bottom: 70px;
-        width: 52px;
-        height: 52px;
-    }
-
-    .volver-arriba {
-        right: 14px;
-        bottom: 12px;
-        width: 42px;
-        height: 42px;
-    }
+    .whatsapp-float { right: 14px; bottom: 70px; }
+    .volver-arriba  { right: 14px; bottom: 12px; width: 42px; height: 42px; }
 }
 
 
-/* ------------------------------------------------------------------
-   430px — Celulares chicos (iPhone SE, modelos compactos)
-   Solo ajustes puntuales donde algo se rompe o queda apretado.
-   ------------------------------------------------------------------ */
+/* 430px — Celulares chicos */
 @media (max-width: 430px) {
 
-    .logo img {
-        height: 40px;
-    }
+    .logo img { height: 40px; }
 
-    .nav {
-        gap: 5px 10px;
-    }
+    .nav { gap: 5px 10px; }
+    .nav a { font-size: 11px; }
 
-    .nav a {
-        font-size: 11px;
-    }
+    .equipo-card { min-height: 360px; }
 
-    /* Hero aún más compacto */
-    .hero {
-        padding: 28px var(--page-x) 0;
-    }
-
-    .hero-visual {
-        width: min(98vw, 420px);
-        margin-top: 20px;
-    }
-
-    /* Imagen de proyectos más baja */
-    .proyecto-img {
-        height: 200px;
-    }
-
-    /* Card del equipo: altura mínima más baja */
-    .equipo-card {
-        min-height: 360px;
-    }
-
-    /* Texto de equipo más compacto */
-    .equipo-info h3 {
-        font-size: 1.1rem;
-    }
-
-    .equipo-info p {
-        font-size: 0.85rem;
-        line-height: 1.55;
-    }
+    .equipo-info h3 { font-size: 1.1rem; }
+    .equipo-info p  { font-size: 0.85rem; line-height: 1.55; }
 }
 
 
-/* ------------------------------------------------------------------
-   ACCESIBILIDAD — prefers-reduced-motion
-   Si el sistema operativo pide menos movimiento, bajamos todo.
-   ------------------------------------------------------------------ */
+/* Accesibilidad: reduce movimiento si el sistema lo pide */
 @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
