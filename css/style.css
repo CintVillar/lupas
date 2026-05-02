@@ -25,28 +25,28 @@ img {
 /* VARIABLES GLOBALES                                 */
 /* ================================================== */
 :root {
-    --bg:          #0d0d0d;
-    --bg-soft:     #111111;
-    --bg-card:     #181818;
-    --bg-card-2:   #1e1e1e;
+    --bg: #0d0d0d;
+    --bg-soft: #111111;
+    --bg-card: #181818;
+    --bg-card-2: #1e1e1e;
 
-    --text:        #efefef;
-    --text-soft:   #c4c4c4;
-    --text-muted:  #888888;
+    --text: #efefef;
+    --text-soft: #c4c4c4;
+    --text-muted: #888888;
 
-    --line:        rgba(255, 255, 255, 0.07);
+    --line: rgba(255, 255, 255, 0.07);
     --line-strong: rgba(255, 255, 255, 0.14);
 
-    --accent:      #3a7bd5;
+    --accent: #3a7bd5;
     --accent-soft: rgba(58, 123, 213, 0.12);
 
-    --white:       #ffffff;
-    --radius:      16px;
-    --radius-sm:   10px;
-    --container:   1200px;
-    --container-wide: 1280px;
+    --white: #ffffff;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --container: 1400px;
+    --container-wide: 1600px;
 
-    --page-x:    clamp(16px, 4vw, 48px);
+    --page-x: clamp(16px, 4vw, 48px);
     --section-y: clamp(72px, 8vw, 110px);
 
     --header-h: 80px;
@@ -68,12 +68,10 @@ body {
     min-width: 320px;
 }
 
-#inicio {
-    position: absolute;
-    top: 0;
-}
+
 
 #inicio,
+#servicios,
 #estudio,
 #proyectos,
 #clientes,
@@ -81,7 +79,10 @@ body {
     scroll-margin-top: calc(var(--header-h) + 16px);
 }
 
-main, header, footer, section {
+main,
+header,
+footer,
+section {
     width: 100%;
 }
 
@@ -92,34 +93,26 @@ a {
 
 /* ================================================== */
 /* HEADER                                             */
-/*                                                    */
-/* position: fixed — el header se queda siempre       */
-/* pegado en la parte superior de la VENTANA,         */
-/* sin importar cuánto scrolleás. left/right:0        */
-/* garantizan que ocupa todo el ancho.                */
-/*                                                    */
-/* El JS agrega .scrolled cuando scrollY > 80px      */
-/* para pasar de fondo transparente a oscuro sólido.  */
 /* ================================================== */
 .header {
-    position: fixed;          /* FIJO: se mueve con la ventana, no con la página */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     height: var(--header-h);
-    background: linear-gradient(180deg, rgba(5, 6, 8, 0.85) 0%, rgba(5,6,8,0.0) 100%);
-    border-bottom: none;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    transition: background 0.35s ease, border-color 0.35s ease;
+    background: #000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: none;
 }
 
 .header.scrolled {
-    background: rgba(10, 10, 10, 0.96);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: #000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .header-container {
@@ -133,16 +126,20 @@ a {
     gap: 24px;
 }
 
-.logo { flex-shrink: 0; }
+.logo {
+    flex-shrink: 0;
+}
 
 .logo img {
-    height: 54px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     transition: opacity 0.25s ease;
 }
 
-.logo img:hover { opacity: 0.75; }
+.logo img:hover {
+    opacity: 0.75;
+}
 
 .nav {
     display: flex;
@@ -163,142 +160,226 @@ a {
     white-space: nowrap;
 }
 
-.nav a:hover { color: var(--white); }
+.nav a:hover {
+    color: var(--white);
+}
 
 .nav a::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -4px;
-    width: 0; height: 1px;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
     background: var(--white);
     transition: width 0.3s ease;
 }
 
-.nav a:hover::after { width: 100%; }
+.nav a:hover::after {
+    width: 100%;
+}
 
 
 /* ================================================== */
 /* HERO                                               */
 /* ================================================== */
 
-.hero-bg-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    z-index: 0;
-    pointer-events: none;
+#inicio {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-.hero {
-    margin-top: 0;
-    padding-top: 0;
-    position: relative;
-    min-height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(
-        180deg,
-        rgba(5, 6, 8, 0.25) 0%,
-        rgba(5, 6, 8, 0.15) 40%,
-        rgba(5, 6, 8, 0.45) 100%
-    );
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: brightness(0.55);
+}
+
+.hero-bg-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #070809 0%,
+    rgba(7, 8, 9, 0.80) 10%,
+    transparent 25%,
+    transparent 75%,
+    rgba(7, 8, 9, 0.80) 90%,
+    #070809 100%
+  );
+}
+
+#inicio::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(7, 8, 9, 0.75) 100%
+  );
 }
 
 .hero-bg-track {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 .hero-bg-text {
-    position: absolute;
-    top: 36%;
-    left: 0;
-    display: flex;
-    width: max-content;
-    animation: scrollInfinito 36s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: scrollInfinito 36s linear infinite;
 }
 
 .hero-bg-text span {
-    white-space: nowrap;
-    font-family: var(--font-head);
-    font-size: clamp(52px, 7.5vw, 148px);
-    font-weight: 700;
-    line-height: 0.9;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.70);
+  white-space: nowrap;
+  font-family: var(--font-head);
+  font-size: clamp(52px, 7.5vw, 148px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.30);
 }
 
 @keyframes scrollInfinito {
-    from { transform: translate(0, -41%); }
-    to   { transform: translate(-50%, -41%); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background: linear-gradient(
-        90deg,
-        #070809 0%,
-        rgba(7, 8, 9, 0.88) 7%,
-        transparent 18%,
-        transparent 82%,
-        rgba(7, 8, 9, 0.88) 93%,
-        #070809 100%
-    );
+.hero-content {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(20px, 4vw, 56px) 40px;
 }
 
-.hero-estructura {
-    position: absolute;
-    right: -20px;
-    bottom: 0;
-    width: min(65vw, 900px);
-    z-index: 3;
-    pointer-events: none;
+.hero-kicker {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.60);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
-.hero-estructura img {
-    width: 100%;
-    height: auto;
+.hero-content h1 {
+  font-family: var(--font-head);
+  font-size: clamp(26px, 3.2vw, 46px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.7);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(12px, 1.15vw, 15px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.60);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+/* ================================================== */
+/* SERVICIOS                                          */
+/* ================================================== */
+#servicios {
+    scroll-margin-top: 120px;
+}
+
+#servicios {
+    padding: var(--section-y) var(--page-x);
+    background: var(--bg-soft);
+}
+
+.servicios-header {
+    max-width: var(--container);
+    margin: 0 auto 52px;
+    text-align: center;
+}
+
+.servicios-tag {
     display: block;
-    mix-blend-mode: screen;
-    filter: brightness(1.1) contrast(1.05);
-}
-
-.hero-tagline {
-    position: absolute;
-    bottom: 28px;
-    left: clamp(20px, 4vw, 56px);
-    z-index: 4;
-    pointer-events: none;
-}
-
-.hero-tagline p {
-    font-family: var(--font-head);
-    font-size: clamp(22px, 2.8vw, 38px);
-    font-weight: 600;
-    color: #ffffff;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
-}
-
-.hero-tagline span {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
     font-family: var(--font-body);
-    font-size: clamp(12px, 1.2vw, 15px);
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.65);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+}
+
+.servicios-header h2 {
+    font-family: var(--font-head);
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.servicios-grid {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.servicio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px 32px 40px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.servicio-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-4px);
+}
+
+.servicio-icono {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 22px;
+    color: var(--accent);
+}
+
+.servicio-icono svg {
+    width: 100%;
+    height: 100%;
+}
+
+.servicio-card h3 {
+    font-family: var(--font-head);
+    font-size: clamp(16px, 1.5vw, 19px);
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.servicio-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
 }
 
 
@@ -309,18 +390,16 @@ a {
     padding: var(--section-y) var(--page-x);
     text-align: center;
     background:
-        linear-gradient(
-            to bottom,
+        linear-gradient(to bottom,
             rgba(13, 13, 13, 1) 0%,
             rgba(13, 13, 13, 0.60) 15%,
             rgba(13, 13, 13, 0.55) 75%,
-            rgba(13, 13, 13, 1) 100%
-        ),
-        url('../imagenes/equipo.png') center / cover no-repeat;
+            rgba(13, 13, 13, 1) 100%),
+        url('../imagenes/equipo.png') center 20% / cover no-repeat;
     background-attachment: fixed;
 }
 
-#estudio > h2 {
+#estudio>h2 {
     font-family: var(--font-head);
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 600;
@@ -328,7 +407,7 @@ a {
     margin-bottom: 16px;
 }
 
-#estudio > h3 {
+#estudio>h3 {
     font-family: var(--font-body);
     font-size: clamp(15px, 1.6vw, 18px);
     font-weight: 300;
@@ -412,19 +491,19 @@ a {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(0, 0, 0, 0.30) 45%,
-        rgba(0, 0, 0, 0.0) 100%
-    );
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.30) 45%,
+            rgba(0, 0, 0, 0.0) 100%);
     transition: background 0.4s ease;
     z-index: 2;
 }
 
 .equipo-info {
     position: absolute;
-    left: 0; right: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 3;
     padding: 22px 22px 24px;
 }
@@ -469,12 +548,10 @@ a {
 }
 
 .equipo-card:hover .equipo-visual::after {
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.94) 0%,
-        rgba(0, 0, 0, 0.50) 50%,
-        rgba(0, 0, 0, 0.05) 100%
-    );
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.50) 50%,
+            rgba(0, 0, 0, 0.05) 100%);
 }
 
 
@@ -696,7 +773,9 @@ a {
     z-index: 2;
 }
 
-.contacto-top { margin-bottom: 32px; }
+.contacto-top {
+    margin-bottom: 32px;
+}
 
 .contacto-tag {
     display: inline-block;
@@ -727,7 +806,13 @@ a {
     gap: clamp(32px, 5vw, 70px);
 }
 
-.contacto-col-izq { padding-right: 20px; }
+.contacto-col-izq {
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+}
 
 .contacto-texto {
     font-size: clamp(16px, 1.8vw, 21px);
@@ -765,10 +850,17 @@ a {
     overflow-wrap: anywhere;
 }
 
-.contacto-item a { transition: color 0.25s ease; }
-.contacto-item a:hover { color: #aac9f5; }
+.contacto-item a {
+    transition: color 0.25s ease;
+}
 
-.contacto-cta-wrap { margin-top: 48px; }
+.contacto-item a:hover {
+    color: #aac9f5;
+}
+
+.contacto-cta-wrap {
+    margin-top: 48px;
+}
 
 .contacto-cta {
     display: inline-flex;
@@ -816,7 +908,7 @@ footer {
 }
 
 .footer-logo-img {
-    height: 52px;
+    height: 90px;
     width: auto;
     object-fit: contain;
     margin-bottom: 20px;
@@ -849,25 +941,10 @@ footer {
     transition: color 0.25s ease;
 }
 
-.footer-col a:hover { color: var(--white); }
+.footer-col a:hover {
+    color: var(--white);
+}
 
-/* ================================================== */
-/* REDES SOCIALES — ÍCONOS EN CÍRCULOS                */
-/*                                                    */
-/* CORRECCIÓN DEFINITIVA del descentrado:             */
-/*                                                    */
-/* El problema era que los SVG tenían width/height    */
-/* hardcodeados en el HTML (width="20" height="20").  */
-/* Cuando el browser los renderiza como inline, esos  */
-/* atributos compiten con el CSS y ganan, generando   */
-/* un tamaño incorrecto que rompe el centrado.        */
-/*                                                    */
-/* Solución: se eliminaron width/height del HTML y    */
-/* se controla el tamaño 100% desde acá con           */
-/* .red-icono svg { width: 22px; height: 22px }.      */
-/* Así el browser no tiene ambigüedad y el flex       */
-/* del contenedor los centra perfectamente.           */
-/* ================================================== */
 .footer-redes {
     display: flex;
     gap: 12px;
@@ -875,48 +952,29 @@ footer {
 }
 
 .red-icono {
-    display: flex;
-    align-items: center;       /* centra el SVG verticalmente */
-    justify-content: center;   /* centra el SVG horizontalmente */
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    color: #888888;
-    text-decoration: none;
-    line-height: 1;            /* evita que el line-height empuje el SVG */
-    transition: background 0.25s ease, border-color 0.25s ease,
-                color 0.25s ease, transform 0.25s ease;
-}
-
-/* CLAVE: el tamaño del SVG se define SOLO desde CSS  */
-/* El viewBox del SVG escala el contenido internamente */
-.red-icono {
-    display: flex !important;   /* Fuerza el contenedor flex */
-    justify-content: center;    /* Centra horizontal */
-    align-items: center;        /* Centra vertical */
-    
-    width: 50px;                /* Círculo más grande */
-    height: 50px; 
-    border-radius: 50%;
-    background-color: #ffffffa3;     /* Fondo blanco para que resalte */
-    overflow: hidden;           /* Corta cualquier cosa que intente salirse */
-    position: relative;         /* Resetea coordenadas */
+    background-color: #ffffffa3;
+    overflow: hidden;
+    position: relative;
     transition: transform 0.3s;
 }
 
 .red-icono svg {
-    width: 30px !important;     /* Tamaño del ícono a la mitad del círculo */
+    width: 30px !important;
     height: 30px !important;
     display: block;
-    margin: 0 auto;             /* Refuerza el centrado */
+    margin: 0 auto;
     flex-shrink: 0;
 }
 
-.red-icono:hover { transform: translateY(-3px); }
-
-
+.red-icono:hover {
+    transform: translateY(-3px);
+}
 
 .red-wpp:hover {
     color: #25D366;
@@ -982,7 +1040,6 @@ footer {
     box-shadow: 0 10px 30px rgba(37, 211, 102, 0.50);
 }
 
-/* SVG del botón flotante: tamaño fijo 28px desde CSS */
 .whatsapp-float svg {
     display: block;
     width: 28px;
@@ -997,7 +1054,7 @@ footer {
 .volver-arriba {
     position: fixed;
     right: 24px;
-    bottom: 150px; /* antes 16px → ahora queda arriba del botón de WhatsApp */
+    bottom: 150px;
     z-index: 999;
     width: 46px;
     height: 46px;
@@ -1043,7 +1100,6 @@ footer {
 
 /* 1100px — Equipo: 4 → 2 columnas */
 @media (max-width: 1100px) {
-
     .equipo-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 18px;
@@ -1054,9 +1110,13 @@ footer {
 /* 900px — Tablets vertical */
 @media (max-width: 900px) {
 
-    :root { --header-h: 108px; }
+    :root {
+        --header-h: 108px;
+    }
 
-    .header { height: auto; }
+    .header {
+        height: auto;
+    }
 
     .header-container {
         flex-direction: column;
@@ -1073,7 +1133,14 @@ footer {
         gap: 8px 18px;
     }
 
-    .nav a { font-size: 13px; }
+    .nav a {
+        font-size: 13px;
+    }
+
+    .servicios-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
 
     .proyectos-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1098,7 +1165,9 @@ footer {
         gap: 36px;
     }
 
-    .contacto-col-izq { padding-right: 0; }
+    .contacto-col-izq {
+        padding-right: 0;
+    }
 
     .footer-contenido {
         grid-template-columns: 1fr 1fr;
@@ -1120,7 +1189,6 @@ footer {
         min-height: 320px;
     }
 
-    /* Descripción siempre visible en celular (sin hover) */
     .equipo-info p {
         max-height: 200px;
         opacity: 1;
@@ -1132,7 +1200,9 @@ footer {
 /* 600px — Celulares medianos */
 @media (max-width: 600px) {
 
-    :root { --header-h: 100px; }
+    :root {
+        --header-h: 100px;
+    }
 
     .header-container {
         padding-top: 12px;
@@ -1145,8 +1215,14 @@ footer {
         filter: brightness(0) invert(1);
     }
 
-    .nav { gap: 6px 14px; }
-    .nav a { font-size: 12px; letter-spacing: 0.03em; }
+    .nav {
+        gap: 6px 14px;
+    }
+
+    .nav a {
+        font-size: 12px;
+        letter-spacing: 0.03em;
+    }
 
     .hero-tagline {
         position: relative;
@@ -1156,41 +1232,66 @@ footer {
         text-align: left;
     }
 
+    .servicios-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .servicio-card {
+        padding: 28px 24px 32px;
+    }
+
     #estudio {
         text-align: left;
         background-attachment: scroll;
     }
 
-    #estudio > h3 { margin-bottom: 40px; }
+    #estudio>h3 {
+        margin-bottom: 40px;
+    }
 
-    .equipo-header { margin-bottom: 32px; }
+    .equipo-header {
+        margin-bottom: 32px;
+    }
 
-    #proyectos { padding: 70px var(--page-x); }
+    #proyectos {
+        padding: 70px var(--page-x);
+    }
 
-    .proyectos-header { margin-bottom: 22px; }
+    .proyectos-header {
+        margin-bottom: 22px;
+    }
 
     .proyectos-grid {
         grid-template-columns: 1fr;
         gap: 26px;
     }
 
-    .proyecto-principal { display: block; }
+    .proyecto-principal {
+        display: block;
+    }
 
     .proyecto-principal .proyecto-img,
     .proyecto-card:not(.proyecto-principal) .proyecto-img {
         height: 230px;
     }
 
-    .proyecto-info { padding-top: 10px; }
+    .proyecto-info {
+        padding-top: 10px;
+    }
 
     .clientes-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 24px;
     }
 
-    .cliente-logo img { max-height: 32px; }
+    .cliente-logo img {
+        max-height: 32px;
+    }
 
-    .contacto-top h2 { font-size: clamp(28px, 8vw, 40px); }
+    .contacto-top h2 {
+        font-size: clamp(28px, 8vw, 40px);
+    }
 
     .contacto-cta {
         width: 100%;
@@ -1203,29 +1304,56 @@ footer {
         gap: 28px;
     }
 
-    .whatsapp-float { right: 14px; bottom: 70px; }
-    .volver-arriba  { right: 14px; bottom: 12px; width: 42px; height: 42px; }
+    .whatsapp-float {
+        right: 14px;
+        bottom: 70px;
+    }
+
+    .volver-arriba {
+        right: 14px;
+        bottom: 12px;
+        width: 42px;
+        height: 42px;
+    }
 }
 
 
 /* 430px — Celulares chicos */
 @media (max-width: 430px) {
 
-    .logo img { height: 40px; }
+    .logo img {
+        height: 40px;
+    }
 
-    .nav { gap: 5px 10px; }
-    .nav a { font-size: 11px; }
+    .nav {
+        gap: 5px 10px;
+    }
 
-    .equipo-card { min-height: 360px; }
+    .nav a {
+        font-size: 11px;
+    }
 
-    .equipo-info h3 { font-size: 1.1rem; }
-    .equipo-info p  { font-size: 0.85rem; line-height: 1.55; }
+    .equipo-card {
+        min-height: 360px;
+    }
+
+    .equipo-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .equipo-info p {
+        font-size: 0.85rem;
+        line-height: 1.55;
+    }
 }
 
 
 /* Accesibilidad: reduce movimiento si el sistema lo pide */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
