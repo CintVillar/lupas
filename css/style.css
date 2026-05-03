@@ -184,130 +184,195 @@ a {
 /* ================================================== */
 
 #inicio {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-  background: #070809;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: #070809;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
-/* gradiente lateral izquierdo sobre la imagen */
+/* gradiente lateral izquierdo */
 #inicio::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    #070809 0%,
-    #070809 28%,
-    rgba(7,8,9,0.55) 52%,
-    transparent 70%
-  );
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        #070809 0%,
+        #070809 28%,
+        rgba(7,8,9,0.55) 52%,
+        transparent 70%
+    );
 }
 
 /* gradiente inferior */
 #inicio::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
- background: linear-gradient(
-  90deg,
-  #070809 0%,
-  #070809 20%,
-  rgba(7,8,9,0.70) 38%,
-  rgba(7,8,9,0.20) 55%,
-  transparent 68%
-);
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(7,8,9,0.5) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(7,8,9,0.7) 100%
+    );
 }
 
+/* layout interno */
 .hero-layout {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1600px;       /* tope en monitores gigantes */
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(24px, 5vw, 80px);
 }
 
+/* columna texto */
 .hero-text {
-  position: relative;
-  z-index: 4;
-  width: 50%;
-  padding: 0 clamp(24px, 5vw, 80px);
+    position: relative;
+    z-index: 4;
+    width: 50%;
+    max-width: 640px;        /* no se estira infinito */
+    flex-shrink: 0;
 }
 
 .hero-kicker {
-  font-family: var(--font-body);
-  font-size: clamp(10px, 0.9vw, 12px);
-  font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin-bottom: 28px;
+    font-family: var(--font-body);
+    font-size: clamp(10px, 0.9vw, 12px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
 }
 
 .hero-text h1 {
-  font-family: var(--font-head);
-  font-size: clamp(36px, 5.5vw, 78px);
-  font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: 0.01em;
-  margin-bottom: 28px;
+    font-family: var(--font-head);
+    font-size: clamp(36px, 4vw, 68px);   /* más controlado en pantallas grandes */
+    font-weight: 500;
+    line-height: 1.0;
+    letter-spacing: 0.01em;
+    margin-bottom: 28px;
 }
 
 .hero-line-white {
-  color: #ffffff;
-  text-transform: uppercase;
-  font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .hero-line-blue {
-  color: #3a7bd5;
-  text-transform: uppercase;
-  font-weight: 400;
+    color: #3a7bd5;
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
 .hero-divider {
-  width: 40px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.25);
-  margin-bottom: 24px;
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+    margin-bottom: 24px;
 }
 
 .hero-subtitle {
-  font-family: var(--font-body);
-  font-size: clamp(14px, 1.3vw, 17px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.60);
-  line-height: 1.75;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.60);
+    line-height: 1.75;
 }
 
-/* ── columna imagen ── */
+/* columna imagen */
 .hero-img-col {
-  position: absolute;
-  right: -5%;
-  top: 0;
-  width: 62%;
-  height: 100%;
-  overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 58%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .hero-img-col img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 20% center;
-  filter: brightness(0.85);
-  mask-image: linear-gradient(to right, transparent, black 20%);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 20% center;
+    filter: brightness(0.85);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
 }
 
+/* -------------------------------------------------- */
+/* RESPONSIVE HERO                                    */
+/* -------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 900px) {
+    .hero-layout {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-bottom: 48px;
+        padding-top: 120px;   /* espacio para el header */
+    }
+
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        z-index: 4;
+    }
+
+    .hero-img-col {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.4;         /* se ve de fondo, no corta */
+    }
+
+    .hero-img-col img {
+        object-position: center center;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    #inicio::before {
+        background: linear-gradient(
+            180deg,
+            rgba(7,8,9,0.3) 0%,
+            rgba(7,8,9,0.8) 70%,
+            #070809 100%
+        );
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .hero-layout {
+        padding-bottom: 36px;
+        padding-top: 100px;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(32px, 9vw, 48px);
+    }
+
+    .hero-img-col {
+        opacity: 0.3;
+    }
+}
 
 /* ================================================== */
 /* SERVICIOS                                          */
