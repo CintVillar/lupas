@@ -335,18 +335,14 @@ a { color: inherit; }
     margin-bottom: 10px;
 }
 
-
 .servicio-card p {
     font-size: 13px;
     color: #555;
     line-height: 1.7;
-    
-    /* Justificación equilibrada */
     text-align: justify;
-    hyphens: auto; /* Divide palabras para evitar espacios grandes */
-    text-justify: inter-word; /* Mejora el algoritmo de espaciado */
+    hyphens: auto;
+    text-justify: inter-word;
 }
-
 
 /* ================================================== */
 /* ESTUDIO                                            */
@@ -416,7 +412,6 @@ a { color: inherit; }
     font-weight: 400;
     line-height: 1.2;
     color: #f0f0f0;
-    
 }
 
 .equipo-grid {
@@ -498,11 +493,10 @@ a { color: inherit; }
     opacity: 0;
     transform: translateY(6px);
     transition: max-height 0.4s ease, opacity 0.35s ease, transform 0.35s ease;
-     text-align: left;    /* Mucho más limpio y legible */
-    text-wrap: pretty;   /* Evita viudas y huérfanas */
-    hyphens: none;       /* Prohibido cortar palabras */
-    
-    max-width: 95%; 
+    text-align: left;
+    text-wrap: pretty;
+    hyphens: none;
+    max-width: 95%;
 }
 
 .equipo-card:hover .equipo-visual img { transform: scale(1.04); }
@@ -630,6 +624,132 @@ a { color: inherit; }
     font-size: 12px;
     color: var(--text-muted);
     line-height: 1.5;
+}
+
+/* ================================================== */
+/* VISOR 3D — wrapper, canvas, foto, loading          */
+/* ================================================== */
+.proyecto-visor-wrap {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,0.13), transparent 34%),
+        linear-gradient(135deg, #161718 0%, #080909 100%);
+}
+.proyecto-visor-wrap .canvas3d {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.proyecto-visor-wrap.show3d .canvas3d { opacity: 1; }
+
+.proyecto-visor-wrap .proyecto-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+.proyecto-visor-wrap.show3d .proyecto-foto {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.proyecto-visor-wrap .visor-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.proyecto-visor-wrap .visor-loading.visible { opacity: 1; }
+
+.proyecto-visor-wrap .loading-bar {
+    width: 100px;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.proyecto-visor-wrap .loading-bar-inner {
+    height: 100%;
+    width: 0%;
+    background: #3a7bd5;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+.proyecto-visor-wrap .loading-text {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+}
+
+/* ================================================== */
+/* BOTÓN 3D                                           */
+/* ================================================== */
+.btn-3d {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 10;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.85);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, transform 0.2s ease;
+    user-select: none;
+    line-height: 1;
+}
+
+.btn-3d:hover {
+    background: rgba(58,123,213,0.35);
+    border-color: rgba(58,123,213,0.6);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.btn-3d.activo {
+    background: rgba(58,123,213,0.20);
+    border-color: rgba(58,123,213,0.45);
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0;
+    padding: 5px 11px;
+}
+
+.btn-3d.activo:hover {
+    background: rgba(200,50,50,0.30);
+    border-color: rgba(200,50,50,0.5);
+}
+
+/* En modo 3D el cursor es grab para arrastrar */
+.proyecto-visor-wrap.show3d {
+    cursor: grab;
+}
+.proyecto-visor-wrap.show3d:active {
+    cursor: grabbing;
 }
 
 /* ================================================== */
@@ -1017,19 +1137,17 @@ footer {
     background: rgba(255,255,255,0.13);
 }
 
-
 /* ==================================================================
    RESPONSIVE — de mayor a menor
    ================================================================== */
 
-/* ---- 1280px: pantallas grandes pero no gigantes ---- */
+/* ---- 1280px ---- */
 @media (max-width: 1280px) {
     .servicios-grid      { grid-template-columns: repeat(2, 1fr); }
     .equipo-grid         { grid-template-columns: repeat(2, 1fr); }
     .proyectos-grid      { grid-template-columns: repeat(2, 1fr); }
     .clientes-grid       { grid-template-columns: repeat(4, 1fr); }
     .footer-contenido    { grid-template-columns: 1fr 1fr 1fr 1fr; }
-
     .proyecto-principal {
         grid-column: 1 / -1;
         grid-template-columns: 1.8fr 1fr;
@@ -1039,14 +1157,10 @@ footer {
 /* ---- 900px: tablets ---- */
 @media (max-width: 900px) {
     :root { --header-h: 64px; }
-
-    /* Header en una sola fila, compacto */
     .header-container { gap: 16px; }
     .logo img { height: 44px; }
     .nav { gap: 16px; }
     .nav a { font-size: 12px; }
-
-    /* Hero */
     .hero-layout {
         flex-direction: column;
         justify-content: flex-end;
@@ -1054,12 +1168,7 @@ footer {
         padding-bottom: 48px;
         min-height: 100vh;
     }
-
-    .hero-text {
-        width: 100%;
-        max-width: 100%;
-    }
-
+    .hero-text { width: 100%; max-width: 100%; }
     .hero-img-col {
         position: absolute;
         inset: 0;
@@ -1067,13 +1176,11 @@ footer {
         height: 100%;
         opacity: 0.35;
     }
-
     .hero-img-col img {
         object-position: center center;
         mask-image: none;
         -webkit-mask-image: none;
     }
-
     #inicio::before {
         background: linear-gradient(180deg,
             rgba(7,8,9,0.3) 0%,
@@ -1081,53 +1188,31 @@ footer {
             #070809 100%
         );
     }
-
-    /* Servicios */
     .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-
-    /* Equipo */
     .equipo-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-
-    /* Proyectos */
     .proyectos-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
     .proyecto-principal {
         grid-column: 1 / -1;
         grid-template-columns: 1fr;
     }
     .proyecto-principal .proyecto-img { height: clamp(240px, 50vw, 400px); }
-
-    /* Clientes */
     .clientes-grid { grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
-
-    /* Contacto */
     .contacto-contenido { grid-template-columns: 1fr; gap: 32px; }
-
-    /* Footer */
     .footer-contenido { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
 }
 
 /* ---- 600px: celulares ---- */
 @media (max-width: 600px) {
     :root { --header-h: 60px; }
-
-    /* Header */
     .logo img { height: 38px; }
     .nav { gap: 10px; }
     .nav a { font-size: 11px; letter-spacing: 0.04em; }
-
-    /* Hero */
     .hero-text h1 { font-size: clamp(30px, 9vw, 44px); }
     .hero-img-col { opacity: 0.25; }
-
-    /* Servicios */
     .servicios-grid { grid-template-columns: 1fr; gap: 14px; }
     .servicio-card { padding: 24px 20px; }
-
-    /* Estudio */
     #estudio { background-attachment: scroll; }
     #estudio > h3 { margin-bottom: 36px; }
-
-    /* Equipo */
     .equipo-grid { grid-template-columns: 1fr; gap: 14px; }
     .equipo-card { height: auto; min-height: 300px; }
     .equipo-info p {
@@ -1135,25 +1220,15 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
-
-    /* Proyectos */
     .proyectos-grid { grid-template-columns: 1fr; gap: 20px; }
     .proyecto-principal { display: block; }
     .proyecto-principal .proyecto-img,
     .proyecto-card:not(.proyecto-principal) .proyecto-img { height: 220px; }
-
-    /* Clientes */
     .clientes-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
     .cliente-logo img { max-height: 40px; max-width: 100px; }
-
-    /* Contacto */
     .contacto-cta { width: 100%; max-width: 280px; }
-
-    /* Footer */
     .footer-contenido { grid-template-columns: 1fr; gap: 24px; }
     .footer-inner { padding-top: 48px; }
-
-    /* Botones fijos */
     .whatsapp-float { right: 14px; bottom: 68px; }
     .volver-arriba  { right: 14px; bottom: 132px; width: 40px; height: 40px; }
 }
@@ -1173,4 +1248,9 @@ footer {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+.proyecto-principal .proyecto-visor-wrap .proyecto-foto {
+    object-position: center 70%;
+}.proyecto-card:not(.proyecto-principal) .proyecto-visor-wrap .proyecto-foto {
+    object-position: center 50%;
 }
