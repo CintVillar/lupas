@@ -208,24 +208,25 @@
                 </article>
 
                 <!-- Vivienda EM — usa .dae -->
-                <article class="proyecto-card" data-modelo="./imagenes/vivienda-em.glb" data-tipo="glb">
-                    <div class="proyecto-img proyecto-visor-wrap">
-                        <canvas class="canvas3d"></canvas>
+                <article class="proyecto-card">
+
+                    <div class="proyecto-img">
                         <img src="./imagenes/Proyecto secundario (2).png" class="proyecto-foto" alt="Vivienda EM">
-                        <div class="visor-loading">
-                            <div class="loading-bar">
-                                <div class="loading-bar-inner"></div>
-                            </div>
-                            <div class="loading-text">Cargando modelo 3D…</div>
-                        </div>
+
+                        <button class="btn-3d"
+                            data-sketchfab="https://sketchfab.com/models/08d72646839f46c3868a282d6c33d988/embed?autostart=1&ui_infos=0&ui_controls=1&ui_watermark=0&ui_watermark_link=0&ui_stop=0&ui_hint=0&ui_annotations=0">
+                            Ver 3D
+                        </button>
                     </div>
+
                     <div class="proyecto-info">
                         <span>Proyecto</span>
                         <h4>Vivienda EM</h4>
                         <p>Cálculo estructural</p>
-                        <p>Neuquén, Argentina</p>
+                        <p>Neuquén, Neuquén</p>
                         <p>Proyecto: Arq. Eugenia Mancuso</p>
                     </div>
+
                 </article>
 
                 <!-- Complejo La Forestada — usa .glb -->
@@ -457,237 +458,67 @@
         });
     </script>
 
- <!-- VISOR 3D — Three.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-(function () {
 
-    let loadersPromise = null;
 
-    function cargarLoaders() {
-        if (loadersPromise) return loadersPromise;
+    <!-- MODAL 3D -->
 
-        loadersPromise = new Promise(resolve => {
-            const s1 = document.createElement('script');
-            s1.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js';
-            s1.onload = resolve;
-            document.head.appendChild(s1);
+    <div class="modal-3d" id="modal3d">
+
+        <button class="modal-3d-close" id="cerrar3d">
+            ✕
+        </button>
+
+        <div class="modal-3d-content">
+
+            <iframe id="sketchfab-frame" frameborder="0" allowfullscreen mozallowfullscreen="true"
+                webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                execution-while-out-of-viewport execution-while-not-rendered web-share>
+            </iframe>
+
+        </div>
+
+    </div>
+    <script>
+
+        const modal3d = document.getElementById('modal3d');
+        const frame3d = document.getElementById('sketchfab-frame');
+        const cerrar3d = document.getElementById('cerrar3d');
+
+        document.querySelectorAll('.btn-3d').forEach(btn => {
+
+            btn.addEventListener('click', () => {
+
+                const url = btn.dataset.sketchfab;
+
+                frame3d.src = url;
+
+                modal3d.classList.add('active');
+
+            });
+
         });
 
-        return loadersPromise;
-    }
+        cerrar3d.addEventListener('click', () => {
 
-    function initVisor(wrap, modelUrl) {
-        const canvas = wrap.querySelector('.canvas3d');
-        const loadEl = wrap.querySelector('.visor-loading');
-        const barEl = wrap.querySelector('.loading-bar-inner');
+            modal3d.classList.remove('active');
 
-        const W = wrap.offsetWidth || 600;
-        const H = wrap.offsetHeight || 300;
+            frame3d.src = '';
 
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(W, H);
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        renderer.setClearColor(0x000000, 0);
-
-        const scene = new THREE.Scene();
-        scene.background = null;
-
-        const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 2000);
-        camera.position.set(0, 5, 14);
-        camera.lookAt(0, 0, 0);
-
-        scene.add(new THREE.AmbientLight(0xffffff, 0.9));
-
-        const dir = new THREE.DirectionalLight(0xffffff, 1.4);
-        dir.position.set(10, 20, 10);
-        scene.add(dir);
-
-        const fill = new THREE.DirectionalLight(0x9dbbff, 0.35);
-        fill.position.set(-10, 5, -10);
-        scene.add(fill);
-
-        const pivot = new THREE.Group();
-        scene.add(pivot);
-        const textureLoader = new THREE.TextureLoader();
-
-function cargarTextura(url, repeatX = 2, repeatY = 2) {
-    const tex = textureLoader.load(url);
-    tex.wrapS = THREE.RepeatWrapping;
-    tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(repeatX, repeatY);
-    tex.encoding = THREE.sRGBEncoding;
-    return tex;
-}
-
-const texHormigonLT = cargarTextura('./imagenes/vivienda-lt/Concrete_Simple_C01_2m.jpg', 2, 2);
-const texHormigonLinealLT = cargarTextura('./imagenes/vivienda-lt/material_6.jpg', 2, 2);
-
-const matHormigonLT = new THREE.MeshStandardMaterial({
-    map: texHormigonLT,
-    color: 0xffffff,
-    roughness: 0.85,
-    metalness: 0
-});
-
-const matHormigonLinealLT = new THREE.MeshStandardMaterial({
-    map: texHormigonLinealLT,
-    color: 0xffffff,
-    roughness: 0.9,
-    metalness: 0
-});
-
-const matMetalOscuroLT = new THREE.MeshStandardMaterial({
-    color: 0x343638,
-    roughness: 0.55,
-    metalness: 0.35
-});
-
-        let model = null;
-        let rot = 0;
-wrap.addEventListener('wheel', e => {
-    e.preventDefault();
-
-    const factor = e.deltaY > 0 ? 1.08 : 0.92;
-
-    camera.position.multiplyScalar(factor);
-    camera.position.clampLength(4, 45);
-
-}, { passive: false });
-        function centrarModelo(obj) {
-            const box = new THREE.Box3().setFromObject(obj);
-            const center = box.getCenter(new THREE.Vector3());
-            const size = box.getSize(new THREE.Vector3());
-            const maxDim = Math.max(size.x, size.y, size.z);
-            const scale = 10 / maxDim;
-
-            obj.scale.setScalar(scale);
-            obj.position.sub(center.multiplyScalar(scale));
-if (modelUrl.includes('vivienda-lt')) {
-
-    obj.traverse(child => {
-
-        if (!child.isMesh) return;
-
-        const nombre = (child.name || '').toLowerCase();
-        const matNombre = (child.material?.name || '').toLowerCase();
-        const texto = nombre + ' ' + matNombre;
-
-        if (
-            texto.includes('metal') ||
-            texto.includes('steel') ||
-            texto.includes('acero')
-        ) {
-            child.material = matMetalOscuroLT;
-        } else if (
-            texto.includes('wall') ||
-            texto.includes('muro') ||
-            texto.includes('pared') ||
-            texto.includes('concrete') ||
-            texto.includes('hormigon')
-        ) {
-            child.material = matHormigonLinealLT;
-        } else {
-            child.material = matHormigonLT;
-        }
-
-    });
-
-}
-            pivot.add(obj);
-            model = obj;
-
-            if (loadEl) loadEl.classList.remove('visible');
-            if (barEl) barEl.style.width = '100%';
-        }
-
-        if (loadEl) loadEl.classList.add('visible');
-
-        cargarLoaders().then(() => {
-            const loader = new THREE.GLTFLoader();
-
-            loader.load(
-                modelUrl,
-                gltf => centrarModelo(gltf.scene),
-                xhr => {
-                    if (xhr.lengthComputable && barEl) {
-                        barEl.style.width = ((xhr.loaded / xhr.total) * 100) + '%';
-                    }
-                },
-                err => {
-                    console.error('GLB error:', err);
-                    if (loadEl) loadEl.classList.remove('visible');
-                }
-            );
         });
 
-        function animate() {
-            requestAnimationFrame(animate);
+        modal3d.addEventListener('click', (e) => {
 
-            if (model) {
-                rot += 0.004;
-                pivot.rotation.y = rot;
+            if (e.target === modal3d) {
+
+                modal3d.classList.remove('active');
+
+                frame3d.src = '';
+
             }
 
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        const ro = new ResizeObserver(() => {
-            const w = wrap.offsetWidth;
-            const h = wrap.offsetHeight;
-
-            if (w > 0 && h > 0) {
-                renderer.setSize(w, h);
-                camera.aspect = w / h;
-                camera.updateProjectionMatrix();
-            }
         });
 
-        ro.observe(wrap);
-    }
-
-    document.querySelectorAll('.proyecto-visor-wrap').forEach(wrap => {
-        const card = wrap.closest('[data-modelo]');
-        if (!card) return;
-
-        const modelUrl = card.dataset.modelo;
-        let iniciado = false;
-        let activo = false;
-
-        const btn = document.createElement('button');
-        btn.className = 'btn-3d';
-        btn.textContent = '3D';
-        wrap.appendChild(btn);
-
-        btn.addEventListener('click', e => {
-            e.stopPropagation();
-
-            activo = !activo;
-
-            if (activo) {
-                wrap.classList.add('show3d');
-                btn.classList.add('activo');
-                btn.textContent = '✕';
-
-                if (!iniciado) {
-                    iniciado = true;
-                    initVisor(wrap, modelUrl);
-                }
-            } else {
-                wrap.classList.remove('show3d');
-                btn.classList.remove('activo');
-                btn.textContent = '3D';
-            }
-        });
-    });
-
-})();
-</script>
-    
-
+    </script>
 </body>
 
 </html>
