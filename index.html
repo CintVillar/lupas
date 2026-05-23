@@ -24,6 +24,9 @@
             <a href="#inicio" class="logo">
                 <img src="./imagenes/logo.png" alt="LU.PAS Ingeniería">
             </a>
+            <button class="menu-toggle" aria-label="Abrir menú">
+    ☰
+</button>
             <nav class="nav">
                 <a href="#inicio">Inicio</a>
                 <a href="#servicios">Servicios</a>
@@ -523,6 +526,14 @@
         });
 
     </script>
+    <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
 </body>
 
 </html>
