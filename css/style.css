@@ -449,7 +449,7 @@ a {
     margin: 0 auto;
     padding: 0 var(--page-x);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -1696,6 +1696,7 @@ footer {
 
     .equipo-card {
         min-height: 420px;
+     
     }
 
     /* ---------- PROYECTOS ---------- */
