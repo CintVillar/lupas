@@ -1881,14 +1881,77 @@ footer {
         display: none;
     }
 }
-@media (min-width: 1920px) {
-    .hero-img-col {
-        width: 65%;
-        right: 0;
-    }
+@media (min-width: 2560px) {
 
+    /* Hero */
+    .hero-img-col {
+        width: 70%;
+    }
     .hero-layout {
         max-width: 100%;
-        padding-left: clamp(48px, 5vw, 120px);
+        padding-left: clamp(80px, 6vw, 160px);
+    }
+    #inicio::before {
+        background: linear-gradient(90deg,
+            #070809 0%, #070809 22%,
+            rgba(7,8,9,0.55) 42%, transparent 60%);
+    }
+
+    /* Contenedores generales más anchos */
+    :root {
+        --container: min(2200px, 92vw);
+        --container-wide: min(2400px, 94vw);
+        --section-y: clamp(100px, 7vw, 180px);
+    }
+
+    /* Tipografías más grandes */
+    body { font-size: 19px; }
+
+    .servicios-header h2,
+    .proyectos-header h2,
+    .clientes-header h2,
+    #estudio > h2 {
+        font-size: clamp(48px, 3vw, 64px);
+    }
+
+    .hero-text h1 {
+        font-size: clamp(72px, 5vw, 110px);
+    }
+
+    /* Equipo: 3 columnas más grandes */
+    .equipo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: min(2200px, 92vw);
+    }
+    .equipo-card {
+        height: clamp(500px, 32vw, 700px);
+    }
+
+    /* Proyectos */
+    .proyecto-principal .proyecto-img {
+        height: clamp(600px, 36vw, 800px);
+    }
+    .proyecto-card:not(.proyecto-principal) .proyecto-img {
+        height: clamp(300px, 16vw, 420px);
+    }
+
+    /* Contacto */
+    .contacto-top h2 {
+        font-size: clamp(52px, 4vw, 80px);
+    }
+    .contacto-texto {
+        font-size: clamp(18px, 1.4vw, 24px);
+    }
+
+    /* Footer */
+    .footer-inner {
+        max-width: min(2200px, 92vw);
+    }
+    .footer-col p,
+    .footer-col a {
+        font-size: 16px;
+    }
+    .footer-logo-img {
+        height: 110px;
     }
 }
