@@ -1881,3 +1881,14 @@ footer {
         display: none;
     }
 }
+@media (min-width: 1920px) {
+    .hero-img-col {
+        width: 65%;
+        right: 0;
+    }
+
+    .hero-layout {
+        max-width: 100%;
+        padding-left: clamp(48px, 5vw, 120px);
+    }
+}
